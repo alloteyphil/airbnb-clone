@@ -3,7 +3,7 @@ import logo from "../../public/logo.png";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
 import { Globe } from "lucide-react";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import AuthProfile from "./AuthProfile";
 
 function Navbar() {
