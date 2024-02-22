@@ -67,10 +67,15 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        search: {
+          from: {},
+          to: {},
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "search-animation": "",
       },
       maxWidth: {
         xxxl: "1600px",
