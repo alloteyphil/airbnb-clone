@@ -66,6 +66,10 @@
   }
 }
 
+.stay-price {
+  text-underline-offset: 5px;
+}
+
 .embla {
   overflow: hidden;
 }

@@ -23,7 +23,7 @@ const Featured = () => {
 
   return (
     <div className="container">
-      <div className="mx-auto">
+      <div className="mx-auto justify-center flex flex-wrap gap-x-7 gap-y-14">
         {featured.map(
           ({ title, id, subtitle, price, images, ratings, location, host }) => (
             <StayCard
