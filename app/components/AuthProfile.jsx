@@ -11,7 +11,6 @@ import {
 import { SignedOut } from "@clerk/nextjs";
 import { CircleUserRound, Menu } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 
 const AuthProfile = () => {
   return (
@@ -26,7 +25,7 @@ const AuthProfile = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[250px] rounded-xl">
             <DropdownMenuItem className="font-semibold">
-              <Link href={"/sign-in"}>Sign up</Link>
+              <Link href={"/sign-up"}>Sign up</Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="font-light mt-4">
               <Link href={"/sign-in"}>Log in</Link>
