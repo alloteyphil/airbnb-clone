@@ -10,10 +10,7 @@ const SearchButton = () => {
   return (
     <div className="absolute right-2 top-1/2 -translate-y-1/2">
       <button className="rounded-full p-6 bg-theme max-w-max relative">
-        <Search
-          onClick={() => console.log(dateContext)}
-          className="text-white w-4 rounded-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-        />
+        <Search className="text-white w-4 rounded-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
       </button>
     </div>
   );

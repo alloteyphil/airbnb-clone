@@ -18,3 +18,8 @@ export const useDestinationStore = create((set) => ({
   destination: null,
   setDestination: (destination) => set((state) => ({ ...state, destination })),
 }));
+
+export const useGenreStore = create((set) => ({
+  genre: null,
+  setGenre: (genre) => set((state) => ({ ...state, genre })),
+}));

@@ -8,8 +8,8 @@ import AuthProfile from "./AuthProfile";
 
 function Navbar() {
   return (
-    <div className=" container">
-      <div className=" flex py-6">
+    <div className="container">
+      <div className="flex py-6">
         <div className=" flex-1 flex items-center">
           <Image src={logo} alt="Airbnb logo" width={100} />
         </div>
