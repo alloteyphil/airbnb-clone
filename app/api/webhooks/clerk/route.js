@@ -114,8 +114,6 @@ export async function POST(req) {
       user: deletedUser,
     });
   }
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
-  console.log("Webhook body:", body);
 
-  return new Response("", { status: 200 });
+  return new Response(evt.data, { status: 200 });
 }
