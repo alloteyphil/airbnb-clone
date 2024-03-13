@@ -1,9 +1,13 @@
 "use client";
 
-import { HeartIcon } from "@heroicons/react/20/solid";
+import { getCurrentUser } from "@/lib/actions/auth.actions";
+// import User from "@/mongo/database/models/user.model";
+import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const StayCard = ({
+  _id,
   title,
   subtitle,
   price,
@@ -12,6 +16,26 @@ const StayCard = ({
   location,
   host,
 }) => {
+  const { user } = useUser();
+
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const currentUser = await getCurrentUser(user.id);
+      setCurrentUser(currentUser);
+    };
+
+    // Only fetch user data if user.id is defined
+    if (user && user.id) {
+      getUser();
+    }
+  }, [user]); // Run effect whenever user changes
+
+  if (currentUser !== null) {
+    console.log(currentUser);
+  }
+
   return (
     <div className="flex flex-col gap-5 w-72 group relative">
       <svg

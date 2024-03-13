@@ -28,6 +28,15 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  favourites: {
+    type: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Stays",
+      },
+    ],
+    default: false,
+  },
 });
 
 const User = models.User || model("User", UserSchema);

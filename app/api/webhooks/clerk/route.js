@@ -2,7 +2,7 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
 import { NextResponse } from "next/server";
-import { clerkClient } from "@clerk/nextjs";
+import clerkClient from "@/lib/clerk-client";
 
 export async function POST(req) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
@@ -26,7 +26,6 @@ export async function POST(req) {
       status: 400,
     });
   }
-
   // Get the body
   const payload = await req.json();
   const body = JSON.stringify(payload);
@@ -66,6 +65,7 @@ export async function POST(req) {
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
+      favourites: [],
     };
 
     const newUser = await createUser(user);

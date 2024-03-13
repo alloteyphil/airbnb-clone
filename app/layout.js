@@ -5,7 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Airbnb clone",
+  title: "Airbnb clone(dev)",
   description: "Next js airbnb clone",
 };
 

@@ -10,7 +10,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
-import { useDateStore } from "@/store/store";
+import { useDateStore } from "store/store";
 
 const CheckinDate = ({ className }) => {
   const [date, setDate] = useState({
