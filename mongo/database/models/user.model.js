@@ -29,12 +29,7 @@ const UserSchema = new Schema({
     required: true,
   },
   favourites: {
-    type: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Stays",
-      },
-    ],
+    type: [String],
     default: [],
   },
 });
