@@ -19,22 +19,29 @@ const StayCard = ({
   const { user } = useUser();
 
   const [currentUser, setCurrentUser] = useState(null);
+  const [favourited, setFavourited] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
-      const currentUser = await getCurrentUser(user.id);
-      setCurrentUser(currentUser);
+      try {
+        const currentUser = await getCurrentUser(user.id);
+        setCurrentUser(currentUser);
+        currentUser.favourites.map((favouriteId) => {
+          if (favouriteId === _id) {
+            setFavourited(true);
+          }
+        });
+      } catch (error) {
+        throw new Error(error);
+      }
+      // Only fetch user data if user.id is defined
+      if (user && user.id) {
+        getUser();
+      }
     };
+  }, []); // Run effect whenever user changes
 
-    // Only fetch user data if user.id is defined
-    if (user && user.id) {
-      getUser();
-    }
-  }, [user]); // Run effect whenever user changes
-
-  if (currentUser !== null) {
-    console.log(currentUser);
-  }
+  const checkFavourites = () => {};
 
   return (
     <div className="flex flex-col gap-5 w-72 group relative">
@@ -42,7 +49,9 @@ const StayCard = ({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="w-6 h-6 absolute top-3 right-3 text-black/50 hover:text-theme transition-colors duration-300 ease-in-out z-50 cursor-pointer"
+        className={`w-6 h-6 absolute top-3 right-3 ${
+          favourited ? "text-theme" : "text-black/50"
+        }  hover:scale-110 transition duration-300 ease-in-out z-50 cursor-pointer`}
         stroke="#fff"
         strokeWidth="2"
       >

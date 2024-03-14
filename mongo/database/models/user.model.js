@@ -35,7 +35,7 @@ const UserSchema = new Schema({
         ref: "Stays",
       },
     ],
-    default: false,
+    default: [],
   },
 });
 
