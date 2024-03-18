@@ -1,13 +1,14 @@
 "use client";
 
 import { getCurrentUser } from "@/lib/actions/auth.actions";
+import { toggleFavourites } from "@/lib/actions/toggleFavourites.action";
 // import User from "@/mongo/database/models/user.model";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const StayCard = ({
-  _id,
+  id,
   title,
   subtitle,
   price,
@@ -25,23 +26,26 @@ const StayCard = ({
     const getUser = async () => {
       try {
         const currentUser = await getCurrentUser(user.id);
+        if (currentUser.favourites.includes(id)) {
+          setFavourited(true);
+        }
         setCurrentUser(currentUser);
-        currentUser.favourites.map((favouriteId) => {
-          if (favouriteId === _id) {
-            setFavourited(true);
-          }
-        });
       } catch (error) {
         throw new Error(error);
       }
-      // Only fetch user data if user.id is defined
-      if (user && user.id) {
-        getUser();
-      }
     };
-  }, []); // Run effect whenever user changes
+    // Only fetch user data if user.id is defined
+    if (user && user.id) {
+      getUser();
+    }
+  }, [user]); // Run effect whenever user changes
 
-  const checkFavourites = () => {};
+  const triggerToggleFavourites = async () => {
+    if (user) {
+      setFavourited(!favourited);
+      await toggleFavourites(user.id, id, favourited);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-5 w-72 group relative">
@@ -51,9 +55,10 @@ const StayCard = ({
         fill="currentColor"
         className={`w-6 h-6 absolute top-3 right-3 ${
           favourited ? "text-theme" : "text-black/50"
-        }  hover:scale-110 transition duration-300 ease-in-out z-50 cursor-pointer`}
+        }  hover:scale-110  transition duration-300 ease-in-out z-50 cursor-pointer`}
         stroke="#fff"
         strokeWidth="2"
+        onClick={triggerToggleFavourites}
       >
         <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
       </svg>

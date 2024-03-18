@@ -32,19 +32,21 @@ const Featured = () => {
             ratings,
             location,
             host,
-          }) => (
-            <StayCard
-              id={_id}
-              key={_id}
-              title={title}
-              price={price}
-              subtitle={subtitle}
-              images={images}
-              ratings={ratings}
-              location={location}
-              host={host}
-            />
-          )
+          }) => {
+            return (
+              <StayCard
+                id={_id}
+                key={_id}
+                title={title}
+                price={price}
+                subtitle={subtitle}
+                images={images}
+                ratings={ratings}
+                location={location}
+                host={host}
+              />
+            );
+          }
         )}
       </div>
     </div>
