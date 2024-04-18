@@ -3,6 +3,8 @@ import { create } from "zustand";
 export const useGuestStore = create((set) => ({
   adults: 1,
   children: 0,
+  guestAdded: false,
+  setGuestAdded: (guestAdded) => set((state) => ({ ...state, guestAdded })),
   setAdults: (adults) => set((state) => ({ ...state, adults })),
   setChildren: (children) => set((state) => ({ ...state, children })),
 }));

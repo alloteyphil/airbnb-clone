@@ -1,4 +1,3 @@
-import { Search } from "lucide-react";
 import Destination from "./Destination";
 import CheckinDate from "./CheckinDate";
 import Guests from "./Guests";

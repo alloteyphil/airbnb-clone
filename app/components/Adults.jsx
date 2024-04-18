@@ -21,6 +21,7 @@ const Adults = () => {
             const value = adult - 1;
             setAdult(value);
             adultContextChange(value);
+            adultContext.setGuestAdded(true);
           }}
           className="border border-gray-400 relative p-4 rounded-full after:w-3 after:absolute after:bg-gray-400 after:h-0.5 after:t-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 disabled:opacity-30 disabled:cursor-not-allowed"
         ></button>
@@ -30,6 +31,7 @@ const Adults = () => {
             const value = adult + 1;
             setAdult(value);
             adultContextChange(value);
+            adultContext.setGuestAdded(true);
           }}
           className="border border-gray-400 relative p-4 rounded-full"
         >

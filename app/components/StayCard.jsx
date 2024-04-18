@@ -5,18 +5,10 @@ import { toggleFavourites } from "@/lib/actions/toggleFavourites.action";
 // import User from "@/mongo/database/models/user.model";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const StayCard = ({
-  id,
-  title,
-  subtitle,
-  price,
-  images,
-  ratings,
-  location,
-  host,
-}) => {
+const StayCard = ({ id, title, price, images, ratings, location, host }) => {
   const { user } = useUser();
 
   const [currentUser, setCurrentUser] = useState(null);
@@ -97,9 +89,11 @@ const StayCard = ({
         </p>
         <p className="font-normal text-md text-gray-400">Hosted by {host}</p>
       </div>
-      <p className="font-normal underline stay-price text-md cursor-pointer">
-        £{price} <span className="font-light">per night</span>
-      </p>
+      <Link href={`/stays/${id}`}>
+        <p className="font-normal underline stay-price text-md cursor-pointer">
+          £{price} <span className="font-light">per night</span>
+        </p>
+      </Link>
     </div>
   );
 };

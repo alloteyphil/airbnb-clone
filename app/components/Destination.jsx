@@ -20,7 +20,7 @@ const Destination = () => {
           <p className="font-normal ml-5 text-xs">Where</p>
           <p
             className={` ${
-              destination !== null ? "text-black font-medium" : "text-gray-400"
+              destination !== null ? "text-black font-normal" : "text-gray-400"
             } ml-5 text-sm font-light`}
           >
             {destination !== null ? destination : "Choose your destination"}

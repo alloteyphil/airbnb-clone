@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Popover,
   PopoverContent,
@@ -5,14 +7,45 @@ import {
 } from "@/components/ui/popover";
 import Adults from "./Adults";
 import Children from "./Children";
+import { usePathname } from "next/navigation";
+import { useGuestStore } from "@/store/store";
 
 const Guests = () => {
+  const pathname = usePathname();
+
+  const { adults, children, guestAdded } = useGuestStore((state) => state);
   return (
     <Popover>
-      <PopoverTrigger className="flex-1 peer-hover/guests:after:hidden after:w-[0.5px] after:absolute after:bg-gray-400 after:-left-0 after:h-[60%] after:top-1/2 after:-translate-y-1/2 relative hover:after:hidden">
-        <div className="flex flex-col gap-1 cursor-pointer rounded-full h-full p-3 hover:bg-gray-200 focus:bg-white items-start relative">
-          <p className="font-normal ml-5 text-xs">Who</p>
-          <p className="text-gray-400 ml-5 text-sm font-light">Add guests</p>
+      <PopoverTrigger
+        className={`${
+          pathname === "/"
+            ? "flex-1 peer-hover/guests:after:hidden after:w-[0.5px] after:absolute after:bg-gray-400 after:-left-0 after:h-[60%] after:top-1/2 after:-translate-y-1/2 relative hover:after:hidden"
+            : ""
+        }`}
+      >
+        <div
+          className={`flex flex-col gap-1 cursor-pointer p-3 ${
+            pathname === "/"
+              ? "rounded-full h-full  hover:bg-gray-200 focus:bg-white"
+              : "hover:border hover:border-black hover:rounded-b-xl"
+          } items-start relative`}
+        >
+          <p className="font-normal ml-5 text-xs">
+            {guestAdded ? "Guests" : "Who"}
+          </p>
+          <p
+            className={`${
+              guestAdded ? "font-normal" : "text-gray-400"
+            } ml-5 text-sm font-light`}
+          >
+            {guestAdded
+              ? adults +
+                ` Adult${adults === 1 ? "" : "s"}` +
+                " · " +
+                children +
+                ` Child${children === 1 ? "" : "ren"}`
+              : "Add guest"}
+          </p>
         </div>
       </PopoverTrigger>
       <PopoverContent className="min-w-[450px] mt-2 rounded-3xl shadow-md">
