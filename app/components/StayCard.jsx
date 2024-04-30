@@ -40,7 +40,7 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
   };
 
   return (
-    <div className="flex flex-col gap-5 w-72 group relative">
+    <div className="flex flex-col gap-3 w-80 group relative">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -89,8 +89,11 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
         </p>
         <p className="font-normal text-md text-gray-400">Hosted by {host}</p>
       </div>
-      <Link href={`/stays/${id}`}>
-        <p className="font-normal underline stay-price text-md cursor-pointer">
+      <Link
+        href={`/stays/${id}`}
+        className="relative after:absolute after:bottom-0 after:w-full after:h-[1.5px] after:bg-black max-w-max after:left-0"
+      >
+        <p className="font-normal  stay-price text-md cursor-pointer">
           £{price} <span className="font-light">per night</span>
         </p>
       </Link>

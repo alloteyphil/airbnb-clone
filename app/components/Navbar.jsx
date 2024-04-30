@@ -10,7 +10,7 @@ import NavBarSeparator from "./NavBarSeparator";
 function Navbar() {
   return (
     <>
-      <div className="container">
+      <div className="px-6">
         <div className="flex py-4">
           <Link className=" flex-1 flex items-center" href={"/"}>
             <Image src={logo} alt="Airbnb logo" width={100} />

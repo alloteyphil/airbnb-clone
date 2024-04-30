@@ -20,7 +20,7 @@ const Featured = () => {
   }
 
   return (
-    <div className="container">
+    <div className="boxed mt-6">
       <div className="mx-auto justify-center flex flex-wrap gap-x-7 gap-y-14">
         {featured.map(
           ({

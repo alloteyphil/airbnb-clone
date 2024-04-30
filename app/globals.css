@@ -130,4 +130,7 @@
   body {
     @apply bg-background text-foreground;
   }
+  .boxed {
+    @apply mx-auto max-w-[1800px] px-6;
+  }
 }

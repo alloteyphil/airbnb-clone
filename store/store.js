@@ -18,7 +18,12 @@ export const useDateStore = create((set) => ({
 
 export const useDestinationStore = create((set) => ({
   destination: null,
+  center: {
+    lat: null,
+    lng: null,
+  },
   setDestination: (destination) => set((state) => ({ ...state, destination })),
+  setCenter: (center) => set((state) => ({ ...state, center })),
 }));
 
 export const useGenreStore = create((set) => ({

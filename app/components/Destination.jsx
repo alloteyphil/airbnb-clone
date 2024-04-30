@@ -11,7 +11,7 @@ import { useDestinationStore } from "@/store/store";
 
 const Destination = () => {
   const destinationContext = useDestinationStore((state) => state);
-  const { destination, setDestination } = destinationContext;
+  const { center, setCenter, destination, setDestination } = destinationContext;
 
   return (
     <Popover>
@@ -35,6 +35,11 @@ const Destination = () => {
               <DestinationCard
                 onClick={() => {
                   const newDestination = dest.city;
+                  const newCenter = {
+                    lat: dest.center.lat,
+                    lng: dest.center.lng,
+                  };
+                  setCenter(newCenter);
                   setDestination(newDestination);
                 }}
                 key={dest.city}

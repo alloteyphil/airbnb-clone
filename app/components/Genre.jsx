@@ -6,7 +6,7 @@ const Genre = async () => {
 
   return (
     <div className="container">
-      <div className="py-5 flex gap-12 mx-auto justify-center">
+      <div className="py-3 flex gap-12 mx-auto justify-center">
         {genres.map((genre) => (
           <GenreBadge
             key={genre.name}
