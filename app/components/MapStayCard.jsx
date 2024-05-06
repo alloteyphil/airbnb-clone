@@ -3,16 +3,29 @@
 import { getCurrentUser } from "@/lib/actions/auth.actions";
 import { toggleFavourites } from "@/lib/actions/toggleFavourites.action";
 import { useUser } from "@clerk/nextjs";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useDateStore } from "@/store/store";
+import { isSameMonth, format } from "date-fns";
+import Link from "next/link";
 import ImageCarousel from "./ImageCarousel";
 
-const StayCard = ({ id, title, price, images, ratings, location, host }) => {
+const MapStayCard = ({
+  id,
+  images,
+  title,
+  subtitle,
+  location,
+  price,
+  ratings,
+}) => {
   const { user } = useUser();
   const router = useRouter();
 
+  const [currentUser, setCurrentUser] = useState(null);
   const [favourited, setFavourited] = useState(false);
+  const { startDate, endDate } = useDateStore((state) => state);
+  console.log(startDate, endDate);
 
   useEffect(() => {
     const getUser = async () => {
@@ -21,6 +34,7 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
         if (currentUser.favourites.includes(id)) {
           setFavourited(true);
         }
+        setCurrentUser(currentUser);
       } catch (error) {
         throw new Error(error);
       }
@@ -40,8 +54,20 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
     router.push("/sign-in");
   };
 
+  const formatDate = () => {
+    const formattedStartDate = format(startDate, "MMM d");
+    const formattedEndDate = format(
+      endDate,
+      isSameMonth(startDate, endDate) ? "d" : "MMM d"
+    );
+
+    const formattedDateRange = `${formattedStartDate} - ${formattedEndDate}`;
+    return formattedDateRange;
+  };
+  const dates = formatDate();
+
   return (
-    <div className="flex flex-col gap-3 w-80 group relative">
+    <div className="w-72 flex flex-col overflow-hidden rounded-xl relative">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -55,14 +81,15 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
       >
         <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
       </svg>
-
-      <div className="overflow-hidden w-full rounded-xl relative">
-        <ImageCarousel images={images} title={title} />
-        {/* <EmblaCarousel images={images} title={title} /> */}
-      </div>
-      <div className="flex flex-col">
-        <div className="flex justify-between items-center w-full">
-          <p className="font-normal text-md">{location}</p>
+      <ImageCarousel images={images} title={title} isMapCard={true} />
+      <div className="flex flex-col p-3 gap-1">
+        <div className="flex justify-between">
+          <Link
+            href={`/stays/${id}`}
+            className="text-sm font-medium hover:underline"
+          >
+            {title}
+          </Link>
           <div className="flex items-center gap-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -76,24 +103,19 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
                 clipRule="evenodd"
               />
             </svg>
-            <p className="text-md font-light">{ratings}</p>
+            <p className="text-sm font-light">{ratings}</p>
           </div>
         </div>
-        <p className="font-normal text-md text-gray-400">
-          {title.split("in")[0]}
+        <p className="text-sm font-light text-gray-400">
+          {subtitle} in {location}
         </p>
-        <p className="font-normal text-md text-gray-400">Hosted by {host}</p>
+        <p className="text-sm font-medium">
+          ${price} <span className="font-light">night</span>
+          <span className="font-light text-gray-400"> · {dates}</span>
+        </p>
       </div>
-      <Link
-        href={`/stays/${id}`}
-        className="relative after:absolute after:bottom-0 after:w-full after:h-[1.5px] after:bg-black max-w-max after:left-0"
-      >
-        <p className="font-normal stay-price text-md cursor-pointer">
-          £{price} <span className="font-light">per night</span>
-        </p>
-      </Link>
     </div>
   );
 };
 
-export default StayCard;
+export default MapStayCard;

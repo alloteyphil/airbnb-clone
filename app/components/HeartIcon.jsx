@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 const HeartIcon = ({ id }) => {
   const { user } = useUser();
-
   const router = useRouter();
 
   const [favourited, setFavourited] = useState(false);
@@ -18,6 +17,7 @@ const HeartIcon = ({ id }) => {
       try {
         const currentUser = await getCurrentUser(user.id);
         if (currentUser.favourites.includes(id)) {
+          console.log(id);
           setFavourited(true);
         }
       } catch (error) {
@@ -46,9 +46,9 @@ const HeartIcon = ({ id }) => {
         viewBox="0 0 24 24"
         fill="currentColor"
         className={`w-4 h-4 ${
-          favourited ? "text-black/50" : "text-white"
+          favourited ? "text-theme" : "text-white"
         }  hover:scale-110  transition duration-300 ease-in-out z-50 cursor-pointer`}
-        stroke="#000"
+        stroke={favourited ? "#FF385C" : "#000"}
         strokeWidth={2}
         onClick={triggerToggleFavourites}
       >

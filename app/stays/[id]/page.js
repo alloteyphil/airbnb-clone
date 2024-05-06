@@ -13,6 +13,7 @@ const page = async ({ params: { id } }) => {
   const { stay, genre } = await getSingleStay(id);
 
   const {
+    _id,
     title,
     subtitle,
     images,
@@ -58,7 +59,7 @@ const page = async ({ params: { id } }) => {
               <p className="underline">Share</p>
             </div>
             <div className="flex gap-2 items-center">
-              <HeartIcon className="w-4 h-4" />
+              <HeartIcon className="w-4 h-4" id={_id} />
               <p className="underline">Save</p>
             </div>
           </div>

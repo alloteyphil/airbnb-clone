@@ -1,4 +1,3 @@
-import Genre from "@/app/components/Genre";
 import NavBarSeparator from "@/app/components/NavBarSeparator";
 import { getDestinationStays } from "@/lib/actions/getDestionationStays.action";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -54,7 +53,7 @@ const page = async ({ params }) => {
             )}
           </div>
         </div>
-        <ListStaysMap />
+        <ListStaysMap stays={stays} />
       </div>
     </>
   );
