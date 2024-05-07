@@ -20,6 +20,7 @@ module.exports = {
       colors: {
         theme: "#FF385C",
         darkTheme: "#dc2e4e",
+        footer: "var(--footer-bg)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
