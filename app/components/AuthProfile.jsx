@@ -15,7 +15,7 @@ import Link from "next/link";
 const AuthProfile = () => {
   return (
     <SignedOut>
-      <div className="flex p-3 rounded-full border border-gray-400">
+      <div className="flex p-3 rounded-full border z-20 border-gray-400">
         <DropdownMenu>
           <DropdownMenuTrigger className=" focus:outline-none focus:ring-0">
             <div className="gap-2 flex items-center">

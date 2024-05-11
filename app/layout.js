@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <div className="font-light">{children}</div>
+          <div className="font-light text-sm">{children}</div>
         </body>
       </html>
     </ClerkProvider>

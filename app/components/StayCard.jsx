@@ -41,14 +41,14 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 w-80 group relative">
+    <div className="flex flex-col w-80 group relative">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
         className={`w-6 h-6 absolute top-3 right-3 ${
           favourited ? "text-theme" : "text-black/50"
-        }  hover:scale-110  transition duration-300 ease-in-out z-50 cursor-pointer`}
+        }  hover:scale-110  transition duration-300 ease-in-out z-40 cursor-pointer`}
         stroke="#fff"
         strokeWidth="2"
         onClick={triggerToggleFavourites}
@@ -57,9 +57,9 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
       </svg>
 
       <div className="overflow-hidden w-full rounded-xl relative">
-        <ImageCarousel images={images} title={title} />
+        <ImageCarousel images={images} title={title} id={id} />
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-3">
         <div className="flex justify-between items-center w-full">
           <p className="font-normal text-md">{location}</p>
           <div className="flex items-center gap-1">
@@ -85,7 +85,7 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
       </div>
       <Link
         href={`/stays/${id}`}
-        className="relative after:absolute after:animate-grow after:bottom-0 after:hidden group-hover:after:block inline-flex after:w-full after:h-[1.5px] after:bg-black max-w-max after:left-0"
+        className="relative after:absolute after:animate-grow after:bottom-0 after:hidden group-hover:after:block inline-flex after:w-full after:h-[2px] after:bg-black max-w-max after:left-0"
       >
         <p className="font-normal stay-price text-md cursor-pointer">
           £{price} <span className="font-light">per night</span>
