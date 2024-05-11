@@ -21,6 +21,8 @@ module.exports = {
         theme: "#FF385C",
         darkTheme: "#dc2e4e",
         footer: "var(--footer-bg)",
+        accentDark: "var(--accent-color)",
+        accentLight: "var(--accent-color-light)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -73,11 +75,16 @@ module.exports = {
           from: {},
           to: {},
         },
+        grow: {
+          from: { width: "0px" },
+          to: { width: "100%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "search-animation": "",
+        grow: "grow 0.3s ease-in-out",
       },
       maxWidth: {
         xxxl: "1600px",

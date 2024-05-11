@@ -58,7 +58,6 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
 
       <div className="overflow-hidden w-full rounded-xl relative">
         <ImageCarousel images={images} title={title} />
-        {/* <EmblaCarousel images={images} title={title} /> */}
       </div>
       <div className="flex flex-col">
         <div className="flex justify-between items-center w-full">
@@ -79,14 +78,14 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
             <p className="text-md font-light">{ratings}</p>
           </div>
         </div>
-        <p className="font-normal text-md text-gray-400">
+        <p className="font-normal text-md text-accentDark">
           {title.split("in")[0]}
         </p>
-        <p className="font-normal text-md text-gray-400">Hosted by {host}</p>
+        <p className="font-normal text-md text-accentDark">Hosted by {host}</p>
       </div>
       <Link
         href={`/stays/${id}`}
-        className="relative after:absolute after:bottom-0 after:w-full after:h-[1.5px] after:bg-black max-w-max after:left-0"
+        className="relative after:absolute after:animate-grow after:bottom-0 after:hidden group-hover:after:block inline-flex after:w-full after:h-[1.5px] after:bg-black max-w-max after:left-0"
       >
         <p className="font-normal stay-price text-md cursor-pointer">
           £{price} <span className="font-light">per night</span>

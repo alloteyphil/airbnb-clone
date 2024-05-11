@@ -22,7 +22,7 @@ const ImageCarousel = ({ images, title, isMapCard }) => {
               height={200}
               className={`w-full ${
                 isMapCard ? "h-56" : "h-72"
-              } group-hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer`}
+              } group-hover:scale-110 transition-transform duration-300 ease-in-out`}
             />
           </CarouselItem>
         ))}

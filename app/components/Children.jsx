@@ -12,7 +12,7 @@ const Children = () => {
     <div className="flex justify-between">
       <div className="flex flex-col gap-1">
         <p className="font-normal">Children</p>
-        <p className="font-light text-sm text-gray-400">Ages 12 or below</p>
+        <p className="font-light text-sm text-accentDark">Ages 12 or below</p>
       </div>
       <div className="flex gap-4 items-center">
         <button
@@ -37,7 +37,7 @@ const Children = () => {
           }}
           className="border border-gray-400 relative p-4 rounded-full"
         >
-          <p className="w-3 absolute text-gray-400 text-xl t-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <p className="w-3 absolute text-accentDark text-xl t-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             +
           </p>
         </button>

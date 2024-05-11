@@ -35,7 +35,7 @@ const Guests = () => {
           </p>
           <p
             className={`${
-              guestAdded ? "font-normal" : "text-gray-400"
+              guestAdded ? "font-normal" : "text-accentDark"
             } ml-5 text-sm font-light`}
           >
             {guestAdded

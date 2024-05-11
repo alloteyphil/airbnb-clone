@@ -106,12 +106,12 @@ const MapStayCard = ({
             <p className="text-sm font-light">{ratings}</p>
           </div>
         </div>
-        <p className="text-sm font-light text-gray-400">
+        <p className="text-sm font-light text-accentDark">
           {subtitle} in {location}
         </p>
         <p className="text-sm font-medium">
           ${price} <span className="font-light">night</span>
-          <span className="font-light text-gray-400"> · {dates}</span>
+          <span className="font-light text-accentDark"> · {dates}</span>
         </p>
       </div>
     </div>

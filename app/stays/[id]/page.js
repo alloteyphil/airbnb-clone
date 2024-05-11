@@ -8,6 +8,8 @@ import { deliverables } from "@/data/deliverables";
 import { amenities } from "@/data/amenities";
 import Booking from "@/app/components/Booking";
 import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
+import SingleStayFooter from "@/app/components/SingleStayFooter";
 
 const page = async ({ params: { id } }) => {
   const { stay, genre } = await getSingleStay(id);
@@ -199,6 +201,9 @@ const page = async ({ params: { id } }) => {
           </div>
         </div>
       </div>
+      <Footer>
+        <SingleStayFooter location={location} subtitle={subtitle} />
+      </Footer>
     </>
   );
 };

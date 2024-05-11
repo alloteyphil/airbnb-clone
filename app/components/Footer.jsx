@@ -3,11 +3,14 @@ import Link from "next/link";
 import Separator from "./Separator";
 import { Globe } from "lucide-react";
 
-const Footer = ({ children }) => {
+const Footer = ({ children, isDestinationPage }) => {
   return (
-    <div className="w-full bg-footer flex flex-col pt-12">
-      {children}
-      <div className="grid grid-cols-4 w-full mx-auto max-w-[1400px]">
+    <div className="w-full bg-footer flex flex-col pt-10 text-black/80 gsap-footer">
+      <div className="max-w-[1500px] mx-auto w-full flex justify-start">
+        {children}
+      </div>
+      <Separator isFooter={true} isDestinationPage={isDestinationPage} />
+      <div className="grid grid-cols-4 w-full pt-10 mx-auto max-w-[1500px]">
         {footerlinks.map((link) => (
           <div className="flex flex-col gap-3" key={link.title}>
             <h1 className="font-medium">{link.title}</h1>
@@ -25,7 +28,7 @@ const Footer = ({ children }) => {
           </div>
         ))}
       </div>
-      <div className="mt-10 w-full mx-auto max-w-[1400px]">
+      <div className="mt-7 w-full mx-auto max-w-[1500px]">
         <Separator isFooter={true} />
         <div className="flex justify-between items-center text-sm font-light py-5">
           <div className="flex gap-2">

@@ -4,6 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import StayCard from "@/app/components/StayCard";
 import ListStaysMap from "@/app/components/ListStaysMap";
 import StickyNavBar from "@/app/components/StickyNavBar";
+import Footer from "@/app/components/Footer";
 
 const page = async ({ params }) => {
   const { destination } = params;
@@ -15,18 +16,23 @@ const page = async ({ params }) => {
 
   const stays = await getDestinationStays(destinationUrl);
 
+  const isDestinationPage = Object.keys(params).includes("destination");
+
   return (
     <>
       <StickyNavBar />
       <NavBarSeparator />
       <div className="pl-6 relative w-full flex">
-        <div className="flex flex-col mt-5 gap-5">
+        <div
+          className="flex flex-col mt-5 gap-5 pb-24"
+          style={{ minHeight: "calc(100vh - 170px)" }}
+        >
           {stays ? (
             <h3 className="font-normal text-sm">Over {stays.length}+ stays</h3>
           ) : (
             <Skeleton className="w-[100px] h-[20px] rounded-full" />
           )}
-          <div className="grid grid-cols-3 gap-x-5 gap-y-10">
+          <div className="grid grid-cols-3 gap-x-5 gap-y-10 stay-list">
             {stays.map(
               ({
                 title,
@@ -55,6 +61,7 @@ const page = async ({ params }) => {
         </div>
         <ListStaysMap stays={stays} />
       </div>
+      <Footer isDestinationPage={isDestinationPage} />
     </>
   );
 };

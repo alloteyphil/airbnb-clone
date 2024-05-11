@@ -35,6 +35,8 @@
     --radius: 0.5rem;
 
     --footer-bg: #f7f7f7;
+    --accent-color: #6a6a6a;
+    --accent-color-light: #9e9d9d;
   }
 
   .dark {

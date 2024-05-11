@@ -39,7 +39,9 @@ const BookingDate = () => {
           ) : (
             <>
               <p className="font-normal ml-5 text-xs">Check in / out</p>
-              <p className="text-gray-400 ml-5 text-sm font-light">Add dates</p>
+              <p className="text-accentDark ml-5 text-sm font-light">
+                Add dates
+              </p>
             </>
           )}
         </div>
