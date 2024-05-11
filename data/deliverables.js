@@ -6,7 +6,7 @@ export const deliverables = [
   },
   {
     image: "/door.png",
-    title: "Free cancellation for 48 hours",
+    title: "Free cancellation for 48+ hours",
     subtitle: "Cancel up to 48 hours after booking.",
   },
 ];
