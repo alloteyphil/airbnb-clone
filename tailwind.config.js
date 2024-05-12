@@ -21,6 +21,7 @@ module.exports = {
         theme: "#FF385C",
         darkTheme: "#dc2e4e",
         footer: "var(--footer-bg)",
+        loading: "var(--loading-bg)",
         accentDark: "var(--accent-color)",
         accentLight: "var(--accent-color-light)",
         border: "hsl(var(--border))",

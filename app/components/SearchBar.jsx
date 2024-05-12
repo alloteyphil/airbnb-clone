@@ -3,16 +3,27 @@ import CheckinDate from "./CheckinDate";
 import Guests from "./Guests";
 import SearchButton from "./SearchButton";
 
-const SearchBar = () => {
+const SearchBar = ({ isDestinationPage = false }) => {
   return (
-    <div className="container">
-      <div className="border-gray-300 shadow-md mx-auto flex border w-[50vw] rounded-full relative">
-        <Destination />
-        <CheckinDate />
-        <Guests />
-        <SearchButton />
-      </div>
-    </div>
+    <>
+      {!isDestinationPage ? (
+        <div className="container">
+          <div className="border-gray-300 shadow-md mx-auto flex border w-[50vw] rounded-full relative">
+            <Destination />
+            <CheckinDate />
+            <Guests />
+            <SearchButton />
+          </div>
+        </div>
+      ) : (
+        <div className="border-gray-300 shadow-md mx-auto flex border w-[50vw] rounded-full relative">
+          <Destination />
+          <CheckinDate />
+          <Guests />
+          <SearchButton />
+        </div>
+      )}
+    </>
   );
 };
 

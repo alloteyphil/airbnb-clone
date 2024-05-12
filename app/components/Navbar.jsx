@@ -1,13 +1,12 @@
 import Image from "next/image";
 import logo from "../../public/logo.png";
-import NavLinks from "./NavLinks";
 import Link from "next/link";
 import { Globe } from "lucide-react";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import AuthProfile from "./AuthProfile";
 import NavBarSeparator from "./NavBarSeparator";
 
-function Navbar() {
+function Navbar({ children }) {
   return (
     <>
       <div className="px-6">
@@ -15,7 +14,7 @@ function Navbar() {
           <Link className=" flex-1 flex items-center" href={"/"}>
             <Image src={logo} alt="Airbnb logo" width={100} />
           </Link>
-          <NavLinks />
+          <>{children}</>
           <div className="flex-1">
             <div className="ml-auto flex items-center max-w-max">
               <Link

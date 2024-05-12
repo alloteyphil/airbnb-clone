@@ -1,26 +1,11 @@
-"use client";
-
 import { getFeatured } from "@/lib/actions/getFeatured.actions";
-import { useEffect, useState } from "react";
 import StayCard from "./StayCard";
 
-const Featured = () => {
-  const [featured, setFeatured] = useState(null);
-
-  useEffect(() => {
-    const getFeaturedStays = async () => {
-      const featured = await getFeatured();
-      setFeatured(featured);
-    };
-    getFeaturedStays();
-  }, []);
-
-  if (featured === null) {
-    return <div>Loading...</div>;
-  }
+const Featured = async () => {
+  const featured = await getFeatured();
 
   return (
-    <div className="boxed mt-6 pb-24">
+    <div className="mt-6 pb-24">
       <div className="mx-auto justify-center flex flex-wrap gap-x-7 gap-y-14">
         {featured.map(
           ({

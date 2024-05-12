@@ -6,13 +6,16 @@ import Separator from "./components/Separator";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomeFooter from "./components/HomeFooter";
+import NavLinks from "./components/NavLinks";
 
 export default async function Home() {
   // await testDb();
 
   return (
     <>
-      <Navbar />
+      <Navbar>
+        <NavLinks />
+      </Navbar>
       <SearchBar />
       <Separator />
       <Genre />

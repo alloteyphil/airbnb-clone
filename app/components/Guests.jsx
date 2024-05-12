@@ -14,18 +14,19 @@ const Guests = () => {
   const pathname = usePathname();
 
   const { adults, children, guestAdded } = useGuestStore((state) => state);
+
   return (
     <Popover>
       <PopoverTrigger
         className={`${
-          pathname === "/"
+          pathname === "/" || pathname.split("/")[1] === "find-stays"
             ? "flex-1 peer-hover/guests:after:hidden after:w-[0.5px] after:absolute after:bg-gray-400 after:-left-0 after:h-[60%] after:top-1/2 after:-translate-y-1/2 relative hover:after:hidden"
             : ""
         }`}
       >
         <div
           className={`flex flex-col gap-1 cursor-pointer p-3 ${
-            pathname === "/"
+            pathname === "/" || pathname.split("/")[1] === "find-stays"
               ? "rounded-full h-full  hover:bg-gray-200 focus:bg-white"
               : "hover:border hover:border-black hover:rounded-b-xl"
           } items-start relative`}

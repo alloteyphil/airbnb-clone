@@ -1,4 +1,3 @@
-import NavBarSeparator from "@/app/components/NavBarSeparator";
 import { getDestinationStays } from "@/lib/actions/getDestionationStays.action";
 import { Skeleton } from "@/components/ui/skeleton";
 import StayCard from "@/app/components/StayCard";
@@ -21,7 +20,6 @@ const page = async ({ params }) => {
   return (
     <>
       <StickyNavBar />
-      <NavBarSeparator />
       <div className="pl-6 relative w-full flex">
         <div
           className="flex flex-col mt-5 gap-5 pb-24"
