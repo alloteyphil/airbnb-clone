@@ -2,7 +2,7 @@ Introducing my latest project: an Airbnb clone that mirrors the functionality an
 
 This project showcases my proficiency in front-end development, back-end logic, and database management. Through meticulous attention to detail, I replicated key features such as property listings, user authentication, booking systems, and messaging functionalities.
 
-Notably, I focused on creating a seamless user experience, ensuring smooth navigation and responsiveness across devices. Leveraging modern web technologies including HTML5, CSS3, JavaScript, and frameworks such as React.js and Node.js, I crafted a dynamic and visually appealing platform.
+Notably, I focused on creating a seamless user experience, ensuring smooth navigation and responsiveness across devices. Leveraging modern web technologies including Tailwind CSS, JavaScript, and frameworks such as React.js and Next.js, I crafted a dynamic and visually appealing platform.
 
 Moreover, I paid close attention to security measures, implementing robust authentication protocols and encryption techniques to safeguard user data and transactions.
 
