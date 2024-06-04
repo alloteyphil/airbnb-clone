@@ -42,7 +42,7 @@ const page = async ({ params: { id } }) => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-4 h-4 text-black"
+                className="w-4 h-4 text-black/90"
               >
                 <path
                   fillRule="evenodd"
@@ -104,7 +104,7 @@ const page = async ({ params: { id } }) => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-4 h-4 text-black"
+                  className="w-4 h-4 text-black/90"
                 >
                   <path
                     fillRule="evenodd"
@@ -115,7 +115,7 @@ const page = async ({ params: { id } }) => {
                 <p>{ratings}</p>
               </div>
             </div>
-            <div className="border-t-[0.5px] border-b-[0.5px] flex items-center gap-6 border-gray-300 py-6">
+            <div className="border-t-[0.5px] border-b-[0.5px] flex items-center gap-6 border-neutral-300 py-6">
               <Avatar>
                 <AvatarImage src={`/${hostImage}`} />
                 <AvatarFallback className="capitalize">
@@ -126,13 +126,13 @@ const page = async ({ params: { id } }) => {
 
               <div className="flex flex-col gap-1">
                 <p className="font-normal">Hosted by {host.split(" ")[0]}</p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-neutral-500">
                   Superhost · 5 years hosting
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-col pb-8 pt-2 pl-2 gap-6 border-b-[0.5px] border-gray-300">
+            <div className="flex flex-col pb-8 pt-2 pl-2 gap-6 border-b-[0.5px] border-neutral-300">
               {deliverables.map((deliverable, i) => (
                 <div key={i} className="flex items-start gap-3">
                   {i === 0 ? (
@@ -142,7 +142,7 @@ const page = async ({ params: { id } }) => {
                   )}
                   <div>
                     <p className="font-normal">{deliverable.title}</p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-neutral-500">
                       {deliverable.subtitle}
                     </p>
                   </div>
@@ -150,11 +150,11 @@ const page = async ({ params: { id } }) => {
               ))}
             </div>
 
-            <div className="flex flex-col pb-8 pt-2 gap-6 border-b-[0.5px] border-gray-300">
+            <div className="flex flex-col pb-8 pt-2 gap-6 border-b-[0.5px] border-neutral-300">
               {description}
             </div>
 
-            <div className="flex flex-col pb-8 pt-2 gap-6 border-b-[0.5px] border-gray-300">
+            <div className="flex flex-col pb-8 pt-2 gap-6 border-b-[0.5px] border-neutral-300">
               <h2 className="font-normal text-2xl">What this place offers</h2>
               <div className="grid grid-cols-2 gap-5 w-2/3">
                 {amenities.map((amenity, i) => (
@@ -173,7 +173,7 @@ const page = async ({ params: { id } }) => {
           </div>
 
           <div className="w-1/3 pt-2 pl-10 flex flex-col gap-8">
-            <Booking price={price} />
+            <Booking price={price} id={_id} />
             <div className="border rounded-2xl px-4 py-6 gap-4 flex items-center">
               <svg
                 viewBox="0 0 48 48"
@@ -193,7 +193,7 @@ const page = async ({ params: { id } }) => {
               </svg>
               <div className="flex flex-col gap-0.5">
                 <p className="font-normal">This is a rare find</p>
-                <p className="text-gray-500 text-sm">
+                <p className="text-neutral-500 text-sm">
                   {host}'s place is usually fully booked.
                 </p>
               </div>

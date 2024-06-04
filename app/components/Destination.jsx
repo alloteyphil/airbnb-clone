@@ -16,12 +16,12 @@ const Destination = () => {
   return (
     <Popover>
       <PopoverTrigger className="peer/destination">
-        <div className="flex flex-col gap-1 min-w-[16.5vw] cursor-pointer rounded-full h-full p-3 hover:bg-gray-200 focus:bg-white items-start">
+        <div className="flex flex-col gap-1 min-w-[16.5vw] cursor-pointer rounded-full h-full p-3 hover:bg-neutral-200 focus:bg-white items-start">
           <p className="font-normal ml-5 text-xs">Where</p>
           <p
             className={` ${
               destination !== null
-                ? "text-black font-normal"
+                ? "text-black/90 font-normal"
                 : "text-accentDark"
             } ml-5 text-sm font-light`}
           >

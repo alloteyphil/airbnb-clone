@@ -23,7 +23,7 @@ const BookingDate = () => {
   return (
     <Popover>
       <PopoverTrigger>
-        <div className="flex flex-col gap-1 cursor-pointer p-3 items-start border-b border-gray-300 hover:border hover:border-black hover:rounded-t-xl">
+        <div className="flex flex-col gap-1 cursor-pointer p-3 items-start border-b border-neutral-300 hover:border hover:border-black/90 hover:rounded-t-xl">
           {date?.from ? (
             date.to ? (
               <div className="font-normal flex flex-col items-start gap-1 ml-5 text-xs">

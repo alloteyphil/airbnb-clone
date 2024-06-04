@@ -7,12 +7,17 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ImageCarousel from "./ImageCarousel";
+import { useGuestStore } from "@/store/store";
+import { useDateStore } from "@/store/store";
 
 const StayCard = ({ id, title, price, images, ratings, location, host }) => {
   const { user } = useUser();
   const router = useRouter();
 
   const [favourited, setFavourited] = useState(false);
+
+  const { adults, children } = useGuestStore((state) => state);
+  const { startDate, endDate } = useDateStore((state) => state);
 
   useEffect(() => {
     const getUser = async () => {
@@ -47,7 +52,7 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
         viewBox="0 0 24 24"
         fill="currentColor"
         className={`w-6 h-6 absolute top-3 right-3 ${
-          favourited ? "text-theme" : "text-black/50"
+          favourited && user !== null ? "text-theme" : "text-black/90/50"
         }  hover:scale-110  transition duration-300 ease-in-out z-40 cursor-pointer`}
         stroke="#fff"
         strokeWidth="2"
@@ -84,8 +89,12 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
         <p className="font-normal text-md text-accentDark">Hosted by {host}</p>
       </div>
       <Link
-        href={`/stays/${id}`}
-        className="relative after:absolute after:animate-grow after:bottom-0 after:hidden group-hover:after:block inline-flex after:w-full after:h-[2px] after:bg-black max-w-max after:left-0"
+        href={`/stays/${id}?checkin=${
+          new Date(startDate).toLocaleString().split(",")[0]
+        }&checkout=${
+          new Date(endDate).toLocaleString().split(",")[0]
+        }&adults=${adults}&children=${children}`}
+        className="relative after:absolute after:animate-grow after:bottom-0 after:hidden group-hover:after:block inline-flex after:w-full after:h-[2px] after:bg-black/90 max-w-max after:left-0"
       >
         <p className="font-normal stay-price text-md cursor-pointer">
           £{price} <span className="font-light">per night</span>

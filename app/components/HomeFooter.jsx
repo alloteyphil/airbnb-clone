@@ -3,7 +3,7 @@ import { homefooterlinks } from "@/data/homefooterlinks";
 
 const HomeFooter = () => {
   return (
-    <div className="flex flex-col gap-4 text-black/80">
+    <div className="flex flex-col gap-4 text-black/90/80">
       <h3 className="text-2xl font-medium w-full">
         Inspiration for future getaways
       </h3>

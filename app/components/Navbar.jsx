@@ -19,14 +19,14 @@ function Navbar({ children }) {
             <div className="ml-auto flex items-center max-w-max">
               <Link
                 href={"#"}
-                className="hover:rounded-full hover:bg-gray-50 transition-colors  duration-100 p-3 text-black font-normal"
+                className="hover:rounded-full hover:bg-neutral-50 transition-colors  duration-100 p-3 text-black/90 font-normal"
               >
                 Airbnb your home
               </Link>
 
               <Link
                 href={"#"}
-                className="hover:rounded-full hover:bg-gray-50 transition-colors  duration-100 p-3 text-black font-base mx-1"
+                className="hover:rounded-full hover:bg-neutral-50 transition-colors  duration-100 p-3 text-black/90 font-base mx-1"
               >
                 <Globe className="w-5 h-5 font-light" />
               </Link>

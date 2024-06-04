@@ -15,21 +15,26 @@ import Link from "next/link";
 const AuthProfile = () => {
   return (
     <SignedOut>
-      <div className="flex p-3 rounded-full border z-20 border-gray-400">
+      <div className="flex p-3 rounded-full border z-20 border-neutral-400">
         <DropdownMenu>
           <DropdownMenuTrigger className=" focus:outline-none focus:ring-0">
             <div className="gap-2 flex items-center">
-              <Menu className="w-5 h-5 text-gray-500" />
-              <CircleUserRound className="w-7 h-7 text-gray-500" />
+              <Menu className="w-5 h-5 text-neutral-500" />
+              <CircleUserRound className="w-7 h-7 text-neutral-500" />
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[250px] rounded-xl">
-            <DropdownMenuItem className="font-semibold">
-              <Link href={"/sign-up"}>Sign up</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="font-light mt-4">
-              <Link href={"/sign-in"}>Log in</Link>
-            </DropdownMenuItem>
+            <Link href={"/sign-up"}>
+              <DropdownMenuItem className="font-semibold">
+                Sign up
+              </DropdownMenuItem>
+            </Link>
+
+            <Link href={"/sign-in"}>
+              <DropdownMenuItem className="font-light mt-4">
+                Log in
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="font-light mt-4">
               Gift card

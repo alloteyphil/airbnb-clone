@@ -21,7 +21,7 @@ const StayMarker = ({
     <Popover>
       <PopoverTrigger className="">
         <Badge
-          className="hover:scale-110 hover:z-[9999] transition duration-200 ease-in-out focus:bg-black focus:text-white"
+          className="hover:scale-110 hover:z-[9999] transition duration-200 ease-in-out focus:bg-black/90 focus:text-white"
           variant="default"
         >
           $ {price}

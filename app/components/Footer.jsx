@@ -5,7 +5,7 @@ import { Globe } from "lucide-react";
 
 const Footer = ({ children, isDestinationPage }) => {
   return (
-    <div className="w-full bg-footer flex flex-col pt-10 text-black/80 gsap-footer">
+    <div className="w-full bg-footer flex flex-col pt-10 text-black/90/80 gsap-footer">
       <div className="max-w-[1500px] mx-auto w-full flex justify-start">
         {children}
       </div>

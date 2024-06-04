@@ -6,7 +6,7 @@ import BookingDate from "./BookingDate";
 import Guests from "./Guests";
 import ReserveButton from "./ReserveButton";
 
-const Booking = ({ price }) => {
+const Booking = ({ price, id }) => {
   const { startDate, endDate } = useDateStore((state) => state);
 
   const nights =
@@ -20,16 +20,16 @@ const Booking = ({ price }) => {
         ${price}
         <span className="text-base font-light"> /night</span>
       </p>
-      <div className="flex flex-col w-full border border-gray-300 rounded-xl">
+      <div className="flex flex-col w-full border border-neutral-300 rounded-xl">
         <BookingDate />
         <Guests />
       </div>
       <div className="flex flex-col gap-3">
-        <ReserveButton />
+        <ReserveButton id={id} />
         <p className="text-center text-sm">You won't be charged yet</p>
       </div>
       <div className="flex flex-col">
-        <div className="border-b-[0.5px] border-gray-300 py-4 flex justify-between">
+        <div className="border-b-[0.5px] border-neutral-300 py-4 flex justify-between">
           <p className="underline text-sm">
             ${price} x {nights} night{`${nights === 1 ? "" : "s"}`}
           </p>

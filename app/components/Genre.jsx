@@ -18,7 +18,7 @@ const Genre = async () => {
           ))}
         </div>
       </div>
-      <div className="w-full h-[0.5px] bg-gray-300" />
+      <div className="w-full h-[0.5px] bg-neutral-300" />
     </>
   );
 };

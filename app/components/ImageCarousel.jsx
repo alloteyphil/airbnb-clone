@@ -9,14 +9,25 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import Link from "next/link";
+import { useGuestStore } from "@/store/store";
+import { useDateStore } from "@/store/store";
 
 const ImageCarousel = ({ images, title, isMapCard, id }) => {
+  const { adults, children } = useGuestStore((state) => state);
+  const { startDate, endDate } = useDateStore((state) => state);
+
   return (
     <Carousel>
       <CarouselContent>
         {images.map((image, index) => (
           <CarouselItem key={index}>
-            <Link href={`/stays/${id}`}>
+            <Link
+              href={`/stays/${id}?checkin=${
+                new Date(startDate).toLocaleString().split(",")[0]
+              }&checkout=${
+                new Date(endDate).toLocaleString().split(",")[0]
+              }&adults=${adults}&children=${children}`}
+            >
               <Image
                 src={`/${image}`}
                 alt={`${title} ${index + 1}`}

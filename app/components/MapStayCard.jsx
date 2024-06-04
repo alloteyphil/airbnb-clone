@@ -73,7 +73,7 @@ const MapStayCard = ({
         viewBox="0 0 24 24"
         fill="currentColor"
         className={`w-6 h-6 absolute top-3 right-3 ${
-          favourited ? "text-theme" : "text-black/50"
+          favourited ? "text-theme" : "text-black/90/50"
         }  hover:scale-110  transition duration-300 ease-in-out z-50 cursor-pointer`}
         stroke="#fff"
         strokeWidth="2"

@@ -8,7 +8,7 @@ const SearchBar = ({ isDestinationPage = false }) => {
     <>
       {!isDestinationPage ? (
         <div className="container">
-          <div className="border-gray-300 shadow-md mx-auto flex border w-[50vw] rounded-full relative">
+          <div className="border-neutral-300 shadow-md mx-auto flex border w-[50vw] rounded-full relative">
             <Destination />
             <CheckinDate />
             <Guests />
@@ -16,7 +16,7 @@ const SearchBar = ({ isDestinationPage = false }) => {
           </div>
         </div>
       ) : (
-        <div className="border-gray-300 shadow-md mx-auto flex border w-[50vw] rounded-full relative">
+        <div className="border-neutral-300 shadow-md mx-auto flex border w-[50vw] rounded-full relative">
           <Destination />
           <CheckinDate />
           <Guests />

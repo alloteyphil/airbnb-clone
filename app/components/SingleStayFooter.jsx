@@ -14,26 +14,26 @@ const SingleStayFooter = async ({ location, subtitle }) => {
         <BreadcrumbItem>
           <BreadcrumbLink
             href="/"
-            className="text-black font-light hover:underline"
+            className="text-black/90 font-light hover:underline"
           >
             Airbnb
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator className="text-black" />
+        <BreadcrumbSeparator className="text-black/90" />
         <BreadcrumbItem>
-          <BreadcrumbPage className="text-black font-light">
+          <BreadcrumbPage className="text-black/90 font-light">
             {location.split(",")[0]}
           </BreadcrumbPage>
         </BreadcrumbItem>
-        <BreadcrumbSeparator className="text-black" />
+        <BreadcrumbSeparator className="text-black/90" />
         <BreadcrumbItem>
-          <BreadcrumbPage className="text-black font-light">
+          <BreadcrumbPage className="text-black/90 font-light">
             {location.split(",")[1]}
           </BreadcrumbPage>
         </BreadcrumbItem>
-        <BreadcrumbSeparator className="text-black" />
+        <BreadcrumbSeparator className="text-black/90" />
         <BreadcrumbItem>
-          <BreadcrumbPage className="text-black font-light">
+          <BreadcrumbPage className="text-black/90 font-light">
             {subtitle}
           </BreadcrumbPage>
         </BreadcrumbItem>
