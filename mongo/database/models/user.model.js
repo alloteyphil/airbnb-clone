@@ -32,6 +32,10 @@ const UserSchema = new Schema({
     type: [String],
     default: [],
   },
+  // bookings: {
+  //   type: [String],
+  //   default: [{}],
+  // },
 });
 
 const User = models.User || model("User", UserSchema);

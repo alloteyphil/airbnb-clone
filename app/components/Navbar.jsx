@@ -9,7 +9,7 @@ import NavBarSeparator from "./NavBarSeparator";
 function Navbar({ children }) {
   return (
     <>
-      <div className="px-6">
+      <nav className="px-6">
         <div className="flex py-4">
           <Link className=" flex-1 flex items-center" href={"/"}>
             <Image src={logo} alt="Airbnb logo" width={100} />
@@ -39,7 +39,7 @@ function Navbar({ children }) {
             </div>
           </div>
         </div>
-      </div>
+      </nav>
       <NavBarSeparator />
     </>
   );

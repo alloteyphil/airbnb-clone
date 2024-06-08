@@ -1,3 +1,4 @@
+import CheckoutButton from "@/app/components/CheckoutButton";
 import CheckoutNavbar from "@/app/components/CheckoutNavbar";
 import ChevronLeftLink from "@/app/components/ChevronLeftLink";
 import Separator from "@/app/components/Separator";
@@ -102,9 +103,14 @@ const page = async ({ params, searchParams }) => {
             </div>
             <Separator />
             <h3 className="text-xl font-medium">Pay by card</h3>
-            <button className="bg-theme transition duration-300 ease-in-out py-4 font-normal text-white text-sm cursor-pointer w-full rounded-xl hover:bg-primary">
-              Continue
-            </button>
+            <CheckoutButton
+              stayId={stay._id}
+              title={stay.title}
+              price={price}
+              nights={nights}
+              startDate={searchParams.checkin}
+              endDate={searchParams.checkout}
+            />
           </div>
           <div>
             <div className="rounded-2xl w-full max-h-max border border-neutral-200 p-8">
