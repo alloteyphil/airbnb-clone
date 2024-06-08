@@ -4,7 +4,19 @@ import { getSingleStay } from "@/lib/actions/getSingularStay.action";
 import { getUserByClerk } from "@/lib/actions/user.actions";
 import { createBooking } from "@/lib/actions/booking.actions";
 
-export default async function POST(req) {
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+export default async function handler(req) {
+  if (req.method !== "POST")
+    return NextResponse.json(
+      { message: "Method not allowed" },
+      { status: 405 }
+    );
+
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: "2023-10-16",
   });
