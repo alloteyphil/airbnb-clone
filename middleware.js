@@ -7,10 +7,11 @@ export default authMiddleware({
     "/find-stays/:destination",
     "/stays/:id",
     "/api/webhooks/clerk",
+    "/api/webhooks/stripe",
   ],
   // Routes that can always be accessed, and have
   // no authentication information
-  ignoredRoutes: ["/api/webhooks/clerk"],
+  ignoredRoutes: ["/api/webhooks/clerk, /api/webhooks/stripe"],
 });
 
 export const config = {
