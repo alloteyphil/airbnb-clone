@@ -4,12 +4,6 @@ import { getSingleStay } from "@/lib/actions/getSingularStay.action";
 import { getUserByClerk } from "@/lib/actions/user.actions";
 import { createBooking } from "@/lib/actions/booking.actions";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 export default async function handler(req) {
   if (req.method !== "POST")
     return NextResponse.json(
