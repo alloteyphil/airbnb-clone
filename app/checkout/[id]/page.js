@@ -107,6 +107,7 @@ const page = async ({ params, searchParams }) => {
               stayId={stay._id}
               title={stay.title}
               price={price}
+              image={stay.images[0]}
               nights={nights}
               startDate={searchParams.checkin}
               endDate={searchParams.checkout}
