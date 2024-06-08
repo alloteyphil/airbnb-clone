@@ -2,7 +2,6 @@
 
 import { checkoutOrder } from "@/lib/actions/checkout.actions";
 import { useUser } from "@clerk/nextjs";
-import { useEffect, useState } from "react";
 
 const CheckoutButton = ({
   stayId,
