@@ -5,12 +5,6 @@ import { getUserByClerk } from "@/lib/actions/user.actions";
 import { createBooking } from "@/lib/actions/booking.actions";
 import getRawBody from "raw-body";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 export default async function handler(req) {
   console.log("Request received:", req.method);
 
