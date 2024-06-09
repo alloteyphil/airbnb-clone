@@ -7,7 +7,7 @@ import { headers } from "next/headers";
 
 export async function POST(req) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: "2023-10-16",
+    apiVersion: "2024-04-10",
   });
 
   const body = await req.text();
