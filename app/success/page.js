@@ -1,5 +1,11 @@
+import Navbar from "../components/Navbar";
+
 const page = () => {
-  return <div>Checkout successfully</div>;
+  return (
+    <div>
+      <Navbar />
+    </div>
+  );
 };
 
 export default page;
