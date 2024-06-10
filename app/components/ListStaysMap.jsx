@@ -5,8 +5,6 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Map, { NavigationControl, GeolocateControl, Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // gsap.registerPlugin(ScrollTrigger);
 
