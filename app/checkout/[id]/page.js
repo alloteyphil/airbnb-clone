@@ -1,6 +1,7 @@
 import CheckoutButton from "@/app/components/CheckoutButton";
 import CheckoutNavbar from "@/app/components/CheckoutNavbar";
 import ChevronLeftLink from "@/app/components/ChevronLeftLink";
+import ConfirmEditDate from "@/app/components/ConfirmEditDate";
 import Separator from "@/app/components/Separator";
 import { getSingleStay } from "@/lib/actions/getSingularStay.action";
 import { Globe } from "lucide-react";
@@ -83,7 +84,11 @@ const page = async ({ params, searchParams }) => {
                       }`}
                 </p>
               </div>
-              <p className="underline text-lg font-normal">Edit</p>
+              <ConfirmEditDate
+                nights={nights}
+                checkin={searchParams.checkin}
+                amenities={stay.amenities}
+              />
             </div>
             <div className="flex justify-between">
               <div className="flex flex-col gap-1">
