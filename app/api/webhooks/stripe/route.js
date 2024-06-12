@@ -6,9 +6,7 @@ import { createBooking } from "@/lib/actions/booking.actions";
 import { headers } from "next/headers";
 
 export async function POST(req) {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: "2024-04-10",
-  });
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
   const body = await req.text();
   const sig = headers().get("Stripe-Signature");
@@ -28,10 +26,7 @@ export async function POST(req) {
     const { id, amountTotal, metadata } = event.data.object;
 
     const {
-      _id: stayId,
-      title,
-      price,
-      images,
+      stay: { _id: stayId, title, price, images },
     } = await getSingleStay(metadata?.bookingId);
 
     const { _id, firstName, lastName, email } = await getUserByClerk(
