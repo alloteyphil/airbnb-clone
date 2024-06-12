@@ -4,6 +4,7 @@ import { getSingleStay } from "@/lib/actions/getSingularStay.action";
 import { getUserByClerk } from "@/lib/actions/user.actions";
 import { createBooking } from "@/lib/actions/booking.actions";
 import { headers } from "next/headers";
+import { testDb } from "@/lib/actions/test.actions";
 
 export async function POST(req) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -25,38 +26,40 @@ export async function POST(req) {
   if (eventType === "checkout.session.completed") {
     const { id, amountTotal, metadata } = event.data.object;
 
-    const {
-      stay: { _id: stayId, title, price, images },
-    } = await getSingleStay(metadata?.bookingId);
+    await testDb(metadata?.title);
 
-    const { _id, firstName, lastName, email } = await getUserByClerk(
-      metadata?.userId
-    );
+    // const {
+    //   stay: { _id: stayId, title, price, images },
+    // } = await getSingleStay(metadata?.bookingId);
 
-    const booking = {
-      stripeId: id,
-      user: {
-        _id,
-        firstName,
-        lastName,
-        email,
-      },
-      stay: {
-        _id: stayId,
-        title,
-        price,
-        images,
-      },
-      nights: metadata?.nights,
-      image: metadata?.image,
-      startDate: metadata?.startDate,
-      endDate: metadata?.endDate,
-      totalPrice: amountTotal,
-    };
+    // const { _id, firstName, lastName, email } = await getUserByClerk(
+    //   metadata?.userId
+    // );
 
-    const newBooking = await createBooking(booking);
+    // const booking = {
+    //   stripeId: id,
+    //   user: {
+    //     _id,
+    //     firstName,
+    //     lastName,
+    //     email,
+    //   },
+    //   stay: {
+    //     _id: stayId,
+    //     title,
+    //     price,
+    //     images,
+    //   },
+    //   nights: metadata?.nights,
+    //   image: metadata?.image,
+    //   startDate: metadata?.startDate,
+    //   endDate: metadata?.endDate,
+    //   totalPrice: amountTotal,
+    // };
 
-    return NextResponse.json(newBooking);
+    // const newBooking = await createBooking(booking);
+
+    // return NextResponse.json(newBooking);
   }
   return new Response("", { status: 200 });
 }
