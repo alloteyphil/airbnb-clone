@@ -63,8 +63,8 @@ export async function POST(req) {
       totalPrice: amountTotal,
     };
 
-    await testDb(booking.user.email);
-    // const newBooking = await createBooking(booking);
+    // await testDb(booking.user.email);
+    const newBooking = await createBooking(booking);
 
     // return NextResponse.json(newBooking);
   }
