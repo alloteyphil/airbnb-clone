@@ -53,14 +53,14 @@ export async function POST(req) {
       stay: {
         _id: stayId,
         title,
-        price,
+        price: parseInt(price),
         images,
       },
-      nights: metadata?.nights,
+      nights: parseInt(metadata?.nights),
       image: metadata?.image,
       startDate: metadata?.startDate,
       endDate: metadata?.endDate,
-      totalPrice: amountTotal,
+      totalPrice: parseInt(amountTotal),
     };
 
     // await testDb(booking.user.email);
