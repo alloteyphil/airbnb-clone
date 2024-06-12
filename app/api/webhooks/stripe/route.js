@@ -26,7 +26,8 @@ export async function POST(req) {
   if (eventType === "checkout.session.completed") {
     const { id, amountTotal, metadata } = event.data.object;
 
-    await testDb(metadata?.title);
+    const { stay } = await getSingleStay(metadata?.bookingId);
+    await testDb(stay.title);
 
     // const {
     //   stay: { _id: stayId, title, price, images },
