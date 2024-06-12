@@ -24,7 +24,7 @@ export async function POST(req) {
   const eventType = event.type;
 
   if (eventType === "checkout.session.completed") {
-    const { id, amountTotal, metadata } = event.data.object;
+    const { id, amount_total, metadata } = event.data.object;
 
     const { stay } = await getSingleStay(metadata?.bookingId);
 
@@ -60,7 +60,7 @@ export async function POST(req) {
       image: metadata?.image,
       startDate: metadata?.startDate,
       endDate: metadata?.endDate,
-      totalPrice: parseInt(amountTotal),
+      totalPrice: parseInt(amount_total),
     };
 
     // await testDb(booking.user.email);
