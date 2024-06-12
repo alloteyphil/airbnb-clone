@@ -43,24 +43,24 @@ export async function POST(req) {
     // );
 
     const booking = {
-      stripeId: id,
+      stripeId: id || "",
       user: {
-        _id,
-        firstName,
-        lastName,
-        email,
+        _id: _id || "",
+        firstName: firstName || "",
+        lastName: lastName || "",
+        email: email || "",
       },
       stay: {
-        _id: stayId,
-        title,
-        price: parseInt(price),
-        images,
+        _id: stayId || "",
+        title: title || "",
+        price: parseInt(price) || 0,
+        images: images || [],
       },
-      nights: parseInt(metadata?.nights),
-      image: metadata?.image,
-      startDate: metadata?.startDate,
-      endDate: metadata?.endDate,
-      totalPrice: parseInt(amount_total),
+      nights: parseInt(metadata?.nights) || 0,
+      image: metadata?.image || "",
+      startDate: metadata?.startDate || "",
+      endDate: metadata?.endDate || "",
+      totalPrice: parseInt(amount_total) || 0,
     };
 
     // await testDb(booking.user.email);
