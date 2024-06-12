@@ -4,7 +4,6 @@ import { getSingleStay } from "@/lib/actions/getSingularStay.action";
 import { getUserByClerk } from "@/lib/actions/user.actions";
 import { createBooking } from "@/lib/actions/booking.actions";
 import { headers } from "next/headers";
-import { testDb } from "@/lib/actions/test.actions";
 
 export async function POST(req) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -34,14 +33,6 @@ export async function POST(req) {
       metadata?.userId
     );
 
-    // const {
-    //   stay: { _id: stayId, title, price, images },
-    // } = await getSingleStay(metadata?.bookingId);
-
-    // const { _id, firstName, lastName, email } = await getUserByClerk(
-    //   metadata?.userId
-    // );
-
     const booking = {
       stripeId: id || "",
       user: {
@@ -60,13 +51,12 @@ export async function POST(req) {
       image: metadata?.image || "",
       startDate: metadata?.startDate || "",
       endDate: metadata?.endDate || "",
-      totalPrice: parseInt(amount_total) || 0,
+      totalPrice: parseInt(amount_total) / 100 || 0,
     };
 
-    // await testDb(booking.user.email);
     const newBooking = await createBooking(booking);
 
-    // return NextResponse.json(newBooking);
+    return NextResponse.json(newBooking);
   }
   return new Response("", { status: 200 });
 }
