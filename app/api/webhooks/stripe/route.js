@@ -33,7 +33,6 @@ export async function POST(req) {
     const { _id, firstName, lastName, email } = await getUserByClerk(
       metadata?.userId
     );
-    await testDb(stayId + email);
 
     // const {
     //   stay: { _id: stayId, title, price, images },
@@ -43,27 +42,28 @@ export async function POST(req) {
     //   metadata?.userId
     // );
 
-    // const booking = {
-    //   stripeId: id,
-    //   user: {
-    //     _id,
-    //     firstName,
-    //     lastName,
-    //     email,
-    //   },
-    //   stay: {
-    //     _id: stayId,
-    //     title,
-    //     price,
-    //     images,
-    //   },
-    //   nights: metadata?.nights,
-    //   image: metadata?.image,
-    //   startDate: metadata?.startDate,
-    //   endDate: metadata?.endDate,
-    //   totalPrice: amountTotal,
-    // };
+    const booking = {
+      stripeId: id,
+      user: {
+        _id,
+        firstName,
+        lastName,
+        email,
+      },
+      stay: {
+        _id: stayId,
+        title,
+        price,
+        images,
+      },
+      nights: metadata?.nights,
+      image: metadata?.image,
+      startDate: metadata?.startDate,
+      endDate: metadata?.endDate,
+      totalPrice: amountTotal,
+    };
 
+    await testDb(booking.user.email);
     // const newBooking = await createBooking(booking);
 
     // return NextResponse.json(newBooking);
