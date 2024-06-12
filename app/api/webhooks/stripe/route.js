@@ -27,7 +27,13 @@ export async function POST(req) {
     const { id, amountTotal, metadata } = event.data.object;
 
     const { stay } = await getSingleStay(metadata?.bookingId);
-    await testDb(stay.title);
+
+    const { _id: stayId, title, price, images } = stay;
+
+    const { _id, firstName, lastName, email } = await getUserByClerk(
+      metadata?.userId
+    );
+    await testDb(stayId + email);
 
     // const {
     //   stay: { _id: stayId, title, price, images },
