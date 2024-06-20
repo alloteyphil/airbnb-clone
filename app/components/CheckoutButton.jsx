@@ -33,9 +33,8 @@ const CheckoutButton = ({
   }
 
   const onCheckout = async () => {
-    if (booking) {
-      await checkoutOrder(booking);
-    }
+    if (booking === undefined) return;
+    await checkoutOrder(booking);
   };
 
   return (

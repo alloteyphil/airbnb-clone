@@ -18,7 +18,6 @@ const page = async ({ params, searchParams }) => {
       (1000 * 60 * 60 * 24) || 1;
 
   const price = stay.price;
-  console.log(price);
   const totalPrice = price * nights;
   const serviceFee = totalPrice * 0.07;
   const totalServicePrice = totalPrice + serviceFee;
@@ -113,7 +112,7 @@ const page = async ({ params, searchParams }) => {
               title={stay.title}
               price={price}
               image={stay.images[0]}
-              night={nights}
+              nights={nights}
               startDate={searchParams.checkin}
               endDate={searchParams.checkout}
             />
