@@ -12,7 +12,7 @@ import Footer from "@/app/components/Footer";
 import SingleStayFooter from "@/app/components/SingleStayFooter";
 
 const page = async ({ params: { id } }) => {
-  const { stay, genre } = await getSingleStay(id);
+  const stay = await getSingleStay(id);
 
   const {
     _id,
@@ -25,9 +25,6 @@ const page = async ({ params: { id } }) => {
     host,
     hostImage,
     description,
-    longitude,
-    latitude,
-    guestFavourite,
   } = stay;
 
   return (

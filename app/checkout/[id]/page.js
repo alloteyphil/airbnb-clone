@@ -2,6 +2,7 @@ import CheckoutButton from "@/app/components/CheckoutButton";
 import CheckoutNavbar from "@/app/components/CheckoutNavbar";
 import ChevronLeftLink from "@/app/components/ChevronLeftLink";
 import ConfirmEditDate from "@/app/components/ConfirmEditDate";
+import ConfirmEditGuest from "@/app/components/ConfirmEditGuest";
 import Separator from "@/app/components/Separator";
 import { getSingleStay } from "@/lib/actions/getSingularStay.action";
 import { Globe } from "lucide-react";
@@ -9,7 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const page = async ({ params, searchParams }) => {
-  const { stay } = await getSingleStay(params.id);
+  const stay = await getSingleStay(params.id);
 
   const nights =
     (new Date(searchParams.checkout).setHours(0, 0, 0, 0) -
@@ -17,11 +18,9 @@ const page = async ({ params, searchParams }) => {
       (1000 * 60 * 60 * 24) || 1;
 
   const price = stay.price;
-
+  console.log(price);
   const totalPrice = price * nights;
-
   const serviceFee = totalPrice * 0.07;
-
   const totalServicePrice = totalPrice + serviceFee;
 
   return (
@@ -74,20 +73,21 @@ const page = async ({ params, searchParams }) => {
                 <p>
                   {searchParams.checkin.split("/")[1] ===
                   searchParams.checkout.split("/")[1]
-                    ? `${searchParams.checkin.split("/")[0]}-${
+                    ? `${searchParams.checkin.split("/")[0]} - ${
                         searchParams.checkout.split("/")[0]
                       } ${searchParams.checkout.split("/")[1]}`
                     : `${searchParams.checkin.split("/")[0]} ${
                         searchParams.checkin.split("/")[1]
-                      }-${searchParams.checkout.split("/")[0]} ${
+                      } - ${searchParams.checkout.split("/")[0]} ${
                         searchParams.checkout.split("/")[1]
                       }`}
                 </p>
               </div>
               <ConfirmEditDate
-                nights={nights}
+                night={nights}
                 checkin={searchParams.checkin}
                 amenities={stay.amenities}
+                stayId={stay._id}
               />
             </div>
             <div className="flex justify-between">
@@ -104,7 +104,7 @@ const page = async ({ params, searchParams }) => {
                     : "s"}
                 </p>
               </div>
-              <p className="underline text-lg font-normal">Edit</p>
+              <ConfirmEditGuest />
             </div>
             <Separator />
             <h3 className="text-xl font-medium">Pay by card</h3>
@@ -113,7 +113,7 @@ const page = async ({ params, searchParams }) => {
               title={stay.title}
               price={price}
               image={stay.images[0]}
-              nights={nights}
+              night={nights}
               startDate={searchParams.checkin}
               endDate={searchParams.checkout}
             />
