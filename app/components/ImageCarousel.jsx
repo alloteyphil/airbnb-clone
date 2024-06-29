@@ -10,11 +10,15 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useGuestStore } from "@/store/store";
-import { useDateStore } from "@/store/store";
+import { useSearchParams } from "next/navigation";
 
 const ImageCarousel = ({ images, title, isMapCard, id }) => {
   const { adults, children } = useGuestStore((state) => state);
-  const { startDate, endDate } = useDateStore((state) => state);
+
+  const searchParams = useSearchParams();
+
+  const checkin = searchParams.get("checkin");
+  const checkout = searchParams.get("checkout");
 
   return (
     <Carousel>
@@ -22,11 +26,7 @@ const ImageCarousel = ({ images, title, isMapCard, id }) => {
         {images.map((image, index) => (
           <CarouselItem key={index}>
             <Link
-              href={`/stays/${id}?checkin=${
-                new Date(startDate).toLocaleString().split(",")[0]
-              }&checkout=${
-                new Date(endDate).toLocaleString().split(",")[0]
-              }&adults=${adults}&children=${children}`}
+              href={`/stays/${id}?checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}`}
             >
               <Image
                 src={`/${image}`}

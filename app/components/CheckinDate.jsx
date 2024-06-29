@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
 
 import {
   Popover,
@@ -10,26 +10,43 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { useDateStore } from "store/store";
+import { useSearchParams } from "next/navigation";
 
-const CheckinDate = ({ className }) => {
-  const [date, setDate] = useState({
-    from: new Date(),
-    to: addDays(new Date(), 0),
-  });
+const CheckinDate = () => {
+  const searchParams = useSearchParams();
 
-  const [selectDate, setSelectDate] = useState(false);
+  const checkin = searchParams.get("checkin");
+  const checkout = searchParams.get("checkout");
 
   const dateContext = useDateStore((state) => state);
-  const { startDate, endDate, setStartDate, setEndDate } = dateContext;
+  const {
+    startDate,
+    endDate,
+    dateAdded,
+    setDateAdded,
+    setStartDate,
+    setEndDate,
+  } = dateContext;
+
+  const [date, setDate] = useState({
+    from:
+      checkin !== null && !isNaN(Date.parse(checkin))
+        ? new Date(checkin)
+        : startDate,
+    to:
+      checkout !== null && !isNaN(Date.parse(checkout))
+        ? new Date(checkout)
+        : endDate,
+  });
 
   return (
     <Popover>
       <PopoverTrigger
         className="peer/guests peer-hover/destination:after:hidden after:w-[0.5px] after:absolute after:bg-neutral-400 after:left-0 after:h-[60%] after:top-1/2 after:-translate-y-1/2 relative hover:after:hidden"
-        onClick={() => setSelectDate(true)}
+        onClick={() => setDateAdded(true)}
       >
         <div className="flex flex-col gap-1 min-w-[16.5vw] cursor-pointer rounded-full h-full p-3 hover:bg-neutral-200 focus:bg-white items-start relative">
-          {date?.from && selectDate ? (
+          {date?.from && dateAdded ? (
             date.to ? (
               <div className="font-normal flex flex-col items-start gap-1 ml-5 text-xs">
                 <p>Check in / out</p>
@@ -39,7 +56,12 @@ const CheckinDate = ({ className }) => {
                 </p>
               </div>
             ) : (
-              format(date.from, "LLL dd, y")
+              <div className="font-normal flex flex-col items-start gap-1 ml-5 text-xs">
+                <p>Check in / out</p>
+                <p className="text-sm font-normal">
+                  {format(date.from, "LLL dd, y")}
+                </p>
+              </div>
             )
           ) : (
             <>

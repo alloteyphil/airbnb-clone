@@ -1,5 +1,7 @@
 import { getFeatured } from "@/lib/actions/getFeatured.actions";
 import StayCard from "./StayCard";
+import { Suspense } from "react";
+import LoadingStayCard from "./LoadingStayCard";
 
 const Featured = async () => {
   const featured = await getFeatured();
@@ -19,17 +21,19 @@ const Featured = async () => {
             host,
           }) => {
             return (
-              <StayCard
-                id={_id}
-                key={_id}
-                title={title}
-                price={price}
-                subtitle={subtitle}
-                images={images}
-                ratings={ratings}
-                location={location}
-                host={host}
-              />
+              <Suspense key={_id} fallback={<LoadingStayCard />}>
+                <StayCard
+                  id={_id}
+                  key={_id}
+                  title={title}
+                  price={price}
+                  subtitle={subtitle}
+                  images={images}
+                  ratings={ratings}
+                  location={location}
+                  host={host}
+                />
+              </Suspense>
             );
           }
         )}

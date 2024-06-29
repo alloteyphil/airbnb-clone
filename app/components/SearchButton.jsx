@@ -3,25 +3,33 @@
 import {
   useDateStore,
   useDestinationStore,
-  useGenreStore,
   useGuestStore,
 } from "@/store/store";
+import { format } from "date-fns";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const SearchButton = () => {
-  const { adults, children } = useGuestStore((state) => state);
-  const { startDate, endDate } = useDateStore((state) => state);
   const { center, destination } = useDestinationStore((state) => state);
-  const genre = useGenreStore((state) => state.genre);
+  const { startDate, endDate } = useDateStore((state) => state);
+  const { adults, children } = useGuestStore((state) => state);
 
   const router = useRouter();
 
   const handleSubmit = () => {
-    if (destination !== null) {
+    if (
+      destination !== null &&
+      startDate !== undefined &&
+      endDate !== undefined
+    ) {
       const destinationUrl = destination.replace(/\s/g, "-").toLowerCase();
       router.push(
-        `/find-stays/${destinationUrl}?lat=${center.lat}&lng=${center.lng}`
+        `/find-stays/${destinationUrl}?lat=${center.lat}&lng=${
+          center.lng
+        }&checkin=${format(new Date(startDate), "dd/MMM/yy")}&checkout=${format(
+          new Date(endDate),
+          "dd/MMM/yy"
+        )}&adults=${adults}&children=${children}`
       );
       return;
     }

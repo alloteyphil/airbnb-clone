@@ -1,4 +1,3 @@
-import { testDb } from "@/lib/actions/test.actions";
 import Featured from "./components/Featured";
 import Genre from "./components/Genre";
 import SearchBar from "./components/SearchBar";

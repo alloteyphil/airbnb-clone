@@ -4,11 +4,10 @@ import { getCurrentUser } from "@/lib/actions/auth.actions";
 import { toggleFavourites } from "@/lib/actions/toggleFavourites.action";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ImageCarousel from "./ImageCarousel";
 import { useGuestStore } from "@/store/store";
-import { useDateStore } from "@/store/store";
 
 const StayCard = ({ id, title, price, images, ratings, location, host }) => {
   const { user } = useUser();
@@ -17,7 +16,6 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
   const [favourited, setFavourited] = useState(false);
 
   const { adults, children } = useGuestStore((state) => state);
-  const { startDate, endDate } = useDateStore((state) => state);
 
   useEffect(() => {
     const getUser = async () => {
@@ -34,7 +32,7 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
     if (user && user.id) {
       getUser();
     }
-  }, [user]); // Run effect whenever user changes
+  }, [user, id]); // Run effect whenever user changes
 
   const triggerToggleFavourites = async () => {
     if (user) {
@@ -44,6 +42,11 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
     }
     router.push("/sign-in");
   };
+
+  const searchParams = useSearchParams();
+
+  const checkin = searchParams.get("checkin");
+  const checkout = searchParams.get("checkout");
 
   return (
     <div className="flex flex-col w-80 group relative">
@@ -89,11 +92,7 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
         <p className="font-normal text-md text-accentDark">Hosted by {host}</p>
       </div>
       <Link
-        href={`/stays/${id}?checkin=${
-          new Date(startDate).toLocaleString().split(",")[0]
-        }&checkout=${
-          new Date(endDate).toLocaleString().split(",")[0]
-        }&adults=${adults}&children=${children}`}
+        href={`/stays/${id}?checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}`}
         className="relative after:absolute after:animate-grow after:bottom-0 after:hidden group-hover:after:block inline-flex after:w-full after:h-[2px] after:bg-black/90 max-w-max after:left-0"
       >
         <p className="font-normal stay-price text-md cursor-pointer">

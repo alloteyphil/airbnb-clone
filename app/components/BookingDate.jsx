@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { format } from "date-fns";
+import { addDays, format } from "date-fns";
 
 import {
   Popover,
@@ -10,14 +10,27 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { useDateStore } from "store/store";
+import { useSearchParams } from "next/navigation";
 
 const BookingDate = () => {
+  const searchParams = useSearchParams();
+
+  const checkin = searchParams.get("checkin");
+  const checkout = searchParams.get("checkout");
+  console.log(checkin, checkout);
+
   const dateContext = useDateStore((state) => state);
-  const { startDate, endDate, setStartDate, setEndDate } = dateContext;
+  const { setStartDate, setEndDate } = dateContext;
 
   const [date, setDate] = useState({
-    from: startDate,
-    to: endDate,
+    from:
+      checkin !== null && !isNaN(Date.parse(checkin))
+        ? new Date(checkin)
+        : new Date(),
+    to:
+      checkout !== null && !isNaN(Date.parse(checkout))
+        ? new Date(checkout)
+        : addDays(new Date(), 1),
   });
 
   return (
@@ -34,7 +47,12 @@ const BookingDate = () => {
                 </p>
               </div>
             ) : (
-              format(date.from, "LLL dd, y")
+              <div className="font-normal flex flex-col items-start gap-1 ml-5 text-xs">
+                <p>Check in / out</p>
+                <p className="text-sm font-normal">
+                  {format(date.from, "LLL dd, y")}
+                </p>
+              </div>
             )
           ) : (
             <>

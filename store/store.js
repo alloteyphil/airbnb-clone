@@ -12,6 +12,8 @@ export const useGuestStore = create((set) => ({
 export const useDateStore = create((set) => ({
   startDate: new Date(),
   endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
+  dateAdded: false,
+  setDateAdded: (dateAdded) => set((state) => ({ ...state, dateAdded })),
   setStartDate: (startDate) => set((state) => ({ ...state, startDate })),
   setEndDate: (endDate) => set((state) => ({ ...state, endDate })),
 }));

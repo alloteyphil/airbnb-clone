@@ -17,7 +17,6 @@ const HeartIcon = ({ id }) => {
       try {
         const currentUser = await getCurrentUser(user.id);
         if (currentUser.favourites.includes(id)) {
-          console.log(id);
           setFavourited(true);
         }
       } catch (error) {
