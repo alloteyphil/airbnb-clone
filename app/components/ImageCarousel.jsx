@@ -29,6 +29,10 @@ const ImageCarousel = ({ images, title, isMapCard, id }) => {
               href={`/stays/${id}?checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}`}
             >
               <Image
+                placeholder="blur"
+                blurDataURL={
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN8Ug8AAk0BZU1+kw8AAAAASUVORK5CYII="
+                }
                 src={`/${image}`}
                 alt={`${title} ${index + 1}`}
                 width={200}

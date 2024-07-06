@@ -3,7 +3,7 @@
 import { useGenreStore } from "@/store/store";
 import Image from "next/image";
 
-const GenreBadge = ({ name, url, icon }) => {
+const GenreBadge = ({ name, icon }) => {
   const genreContext = useGenreStore((state) => state);
   const { genre, setGenre } = genreContext;
 
@@ -22,7 +22,7 @@ const GenreBadge = ({ name, url, icon }) => {
       }`}
     >
       <Image src={icon} alt={name} className="w-6" width={20} height={20} />
-      <p className="text-sm font-light">{name}</p>
+      <p className="text-xs font-normal">{name}</p>
     </button>
   );
 };

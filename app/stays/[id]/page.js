@@ -33,7 +33,7 @@ const page = async ({ params: { id } }) => {
       <div className="max-w-7xl pt-6 mx-auto flex flex-col gap-3">
         <h3 className="text-3xl font-medium">{title}</h3>
         <div className="flex justify-between">
-          <div className="flex gap-3">
+          <div className="flex items-center gap-3">
             <div className="flex items-center gap-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

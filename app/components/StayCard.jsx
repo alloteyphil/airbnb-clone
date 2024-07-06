@@ -49,7 +49,7 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
   const checkout = searchParams.get("checkout");
 
   return (
-    <div className="flex flex-col w-80 group relative">
+    <div className="flex flex-col w-72 group relative">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -86,7 +86,7 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
             <p className="text-md font-light">{ratings}</p>
           </div>
         </div>
-        <p className="font-normal text-md text-accentDark">
+        <p className="font-medium text-md text-accentDark">
           {title.split("in")[0]}
         </p>
         <p className="font-normal text-md text-accentDark">Hosted by {host}</p>
@@ -95,7 +95,7 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
         href={`/stays/${id}?checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}`}
         className="relative after:absolute after:animate-grow after:bottom-0 after:hidden group-hover:after:block inline-flex after:w-full after:h-[2px] after:bg-black/90 max-w-max after:left-0"
       >
-        <p className="font-normal stay-price text-md cursor-pointer">
+        <p className="font-medium stay-price text-md cursor-pointer">
           £{price} <span className="font-light">per night</span>
         </p>
       </Link>
