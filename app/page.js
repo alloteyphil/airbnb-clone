@@ -8,8 +8,6 @@ import HomeFooter from "./components/HomeFooter";
 import NavLinks from "./components/NavLinks";
 
 export default async function Home() {
-  // await testDb();
-
   return (
     <>
       <Navbar>
