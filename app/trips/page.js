@@ -14,6 +14,7 @@ const page = async () => {
   // if (userId !== null) {
   // }
   const pastBooking = await getPastBookings(userId);
+  console.log(pastBooking);
   return (
     <>
       <Navbar />
