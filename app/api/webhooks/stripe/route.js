@@ -47,9 +47,9 @@ export async function POST(req) {
       nights: parseInt(metadata?.nights) || 0,
       image: metadata?.image || "",
       startDate: metadata?.startDate || "",
-      startDateConverted: new Date(metadata?.startDate) || "",
+      startDateConverted: new Date("2024-01-10") || "",
       endDate: metadata?.endDate || "",
-      endDateConverted: new Date(metadata?.endDate) || "",
+      endDateConverted: new Date("2024-01-15") || "",
       totalPrice: parseInt(amount_total) / 100 || 0,
     };
 
