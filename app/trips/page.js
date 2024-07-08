@@ -4,17 +4,11 @@ import Navbar from "../components/Navbar";
 import TripImage from "../../public/trips.png";
 import Link from "next/link";
 import Separator from "../components/Separator";
-import TripsCard from "../components/TripsCard";
 import Footer from "../components/Footer";
-import { auth } from "@clerk/nextjs/server";
-import { getPastBookings } from "@/lib/actions/getPastBookings.actions";
+import PastBookings from "../components/PastBookings";
+import LatestTrip from "../components/LatestTrip";
 
 const page = async () => {
-  const { userId } = auth();
-  // if (userId !== null) {
-  // }
-  const pastBooking = await getPastBookings(userId);
-  console.log(pastBooking);
   return (
     <>
       <Navbar />
@@ -23,46 +17,14 @@ const page = async () => {
           <h1 className="text-black/90 text-4xl font-medium">Trips</h1>
         </div>
         <div className="grid grid-cols-3 max-h-[350px] overflow-hidden rounded-xl border border-neutral-200">
-          <div className="flex flex-col gap-8 pl-8 pr-12 py-12">
-            <svg
-              viewBox="0 0 48 48"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              role="presentation"
-              focusable="false"
-              className="block h-16 w-16 fill-current text-[rgb(227,28,95)] stroke-current"
-            >
-              <g stroke="none">
-                <path
-                  d="M15.629 22.596l-2.735 2.801a2 2 0 0 1-2.792.07L7.554 22.67c-.73 2.89-1.162 4.807-1.295 5.75-.134.942-.213 1.72-.238 2.334-.005.238.013.6.056 1.086.17 1.21.515 2.33 1.011 3.333 1.825 3.69 5.47 5.748 8.949 5.869 3.31.115 5.517-.794 8.313-3.48l2.715-2.752-11.436-12.214z"
-                  opacity=".2"
-                ></path>
-                <path d="M28.207 9.793c.469.468.79 1.028.965 1.622l.62-.622a3.828 3.828 0 0 1 5.755 5.026 3.829 3.829 0 0 1 1.81 6.23l-1.77 1.78c.452.133.885.351 1.272.655l.348.309a3.828 3.828 0 0 1 .154 5.252l-10.437 10.56c-1.044.935-1.74 1.522-2.086 1.76-1.884 1.375-3.787 2.15-6.1 2.464-.723.155-1.868.196-3.432.123-7.054-.575-12.678-6.198-13.257-13.25-.146-2.892.572-6.85 2.153-11.876 1.019-3.917 1.793-6.789 2.323-8.616.239-1.315 2.137-1.414 3.72-.754l.327.15c1.867.933 2.87 2.808 2.462 5.299l-.735 4.381L22.793 9.793a3.828 3.828 0 0 1 5.414 0zm-3.877 1.302L12.836 22.578c4.186 4.427 4.186 11.502-.204 16.054l-1.414-1.414c3.64-3.642 3.708-9.504.153-13.28L9.93 22.343l1.09-6.54c.351-1.752-.204-2.84-1.341-3.409-.34-.18-.777-.286-1.31-.317-1.986 7.282-3.228 11.911-3.726 13.886-.422 1.887-.634 3.556-.634 5.01.235 6.32 5.165 11.443 11.405 11.98 1.127.058 2.14.024 3.039-.104 1.998-.271 3.588-.919 5.221-2.11.613-.33 4.653-4.311 12.12-11.946a1.828 1.828 0 0 0-2.463-2.698l-6.057 6.045-1.362-1.467 9.882-9.88a1.829 1.829 0 0 0 .203-2.345l-.203-.24a1.828 1.828 0 0 0-2.586 0l-9.785 9.784-1.363-1.467 11.734-11.732a1.829 1.829 0 0 0 .203-2.345l-.203-.24a1.829 1.829 0 0 0-2.463-.113L19.57 23.844l-1.362-1.467 8.586-8.584a1.829 1.829 0 0 0 .112-2.463l-.235-.235a1.829 1.829 0 0 0-2.34 0zM47 17v2h-5v-2h5zM42.293 4.293l1.414 1.414-4 4-1.414-1.414 4-4zM31 1v5h-2V1h2z"></path>
-              </g>
-            </svg>
-            <div className="flex flex-col gap-2">
-              <p className="font-medium text-xl">No trips booked ... yet!</p>
-              <p className="text-sm text-neutral-500">
-                Time to dust off your bags and start planning your next
-                adventure.
-              </p>
-            </div>
-            <Link href={"/"}>
-              <button className="bg-theme transition duration-300 ease-in-out px-6 py-4 font-normal text-white text-base cursor-pointer rounded-xl hover:bg-primary">
-                Start searching
-              </button>
-            </Link>
-          </div>
+          <LatestTrip />
           <Image
             className="object-cover object-bottom col-span-2"
             src={TripImage}
             alt="Family gathering"
           />
         </div>
-        <div className="flex flex-col gap-6">
-          <p className="font-medium text-2xl">Where you've been</p>
-          <TripsCard />
-        </div>
+        <PastBookings />
         <div className="flex flex-col gap-6">
           <Separator />
           <div className="flex gap-1">
