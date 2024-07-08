@@ -17,7 +17,9 @@ const BookingSchema = new Schema({
   nights: { type: Number, required: true },
   image: { type: String, required: true },
   startDate: { type: String, required: true },
+  startDateConverted: { type: Date, required: true },
   endDate: { type: String, required: true },
+  endDateConverted: { type: Date, required: true },
   totalPrice: { type: Number, required: true },
   createdAt: { type: Date, default: Date.now },
 });
