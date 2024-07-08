@@ -11,9 +11,11 @@ function Navbar({ children }) {
     <>
       <nav className="px-6">
         <div className="flex py-4">
-          <Link className=" flex-1 flex items-center" href={"/"}>
-            <Image src={logo} alt="Airbnb logo" width={100} />
-          </Link>
+          <div className=" flex-1 flex items-center">
+            <Link href={"/"}>
+              <Image src={logo} alt="Airbnb logo" width={100} />
+            </Link>
+          </div>
           <>{children}</>
           <div className="flex-1">
             <div className="ml-auto flex items-center max-w-max">

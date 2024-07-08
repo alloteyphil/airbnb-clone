@@ -4,12 +4,8 @@ const navlinks = [
     href: "/",
   },
   {
-    title: "Experiences",
-    href: "/experiences",
-  },
-  {
-    title: "Online Experiences",
-    href: "/online-experiences",
+    title: "Trips",
+    href: "/trips",
   },
 ];
 

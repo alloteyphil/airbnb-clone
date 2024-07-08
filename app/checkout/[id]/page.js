@@ -28,7 +28,7 @@ const page = async ({ params, searchParams }) => {
       <div className="max-w-6xl mx-auto py-16 flex-1">
         <div className="flex items-center">
           <ChevronLeftLink />
-          <h1 className="text-black/90/90 text-3xl font-medium">
+          <h1 className="text-black/90 text-3xl font-medium">
             Confirm and pay
           </h1>
         </div>

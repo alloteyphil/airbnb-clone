@@ -26,14 +26,14 @@ export async function POST(req) {
     const { id, amount_total, metadata } = event.data.object;
     const stay = await getSingleStay(metadata?.bookingId);
     const { _id: stayId, title, price, images } = stay;
-    const { _id, firstName, lastName, email } = await getUserByClerk(
+    const { clerkId, firstName, lastName, email } = await getUserByClerk(
       metadata?.userId
     );
 
     const booking = {
       stripeId: id || "",
       user: {
-        _id: _id || "",
+        _id: clerkId || "",
         firstName: firstName || "",
         lastName: lastName || "",
         email: email || "",

@@ -25,7 +25,6 @@ const MapStayCard = ({
   const [currentUser, setCurrentUser] = useState(null);
   const [favourited, setFavourited] = useState(false);
   const { startDate, endDate } = useDateStore((state) => state);
-  console.log(startDate, endDate);
 
   useEffect(() => {
     const getUser = async () => {

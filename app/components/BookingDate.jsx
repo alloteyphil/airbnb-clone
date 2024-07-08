@@ -17,7 +17,6 @@ const BookingDate = () => {
 
   const checkin = searchParams.get("checkin");
   const checkout = searchParams.get("checkout");
-  console.log(checkin, checkout);
 
   const dateContext = useDateStore((state) => state);
   const { setStartDate, setEndDate } = dateContext;
