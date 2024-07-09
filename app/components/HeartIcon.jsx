@@ -16,17 +16,18 @@ const HeartIcon = ({ id }) => {
     const getUser = async () => {
       try {
         const currentUser = await getCurrentUser(user.id);
-        if (currentUser.favourites.includes(id)) {
-          setFavourited(true);
+        if (user !== null) {
+          if (currentUser.favourites.includes(id)) {
+            setFavourited(true);
+          }
         }
       } catch (error) {
         throw new Error(error);
       }
     };
     // Only fetch user data if user.id is defined
-    if (user && user.id) {
-      getUser();
-    }
+
+    getUser();
   }, [user]); // Run effect whenever user changes
 
   const triggerToggleFavourites = async () => {
