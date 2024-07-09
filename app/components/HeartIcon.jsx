@@ -27,7 +27,7 @@ const HeartIcon = ({ id }) => {
     if (user !== null) {
       getUser();
     }
-  }, [user]); // Run effect whenever user changes
+  }, [user, id]); // Run effect whenever user changes
 
   const triggerToggleFavourites = async () => {
     if (user) {
