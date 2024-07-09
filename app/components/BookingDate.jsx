@@ -76,6 +76,7 @@ const BookingDate = () => {
               setEndDate(dateRange?.to);
             }}
             numberOfMonths={2}
+            disabled={{ before: new Date() }}
           />
         </div>
       </PopoverContent>

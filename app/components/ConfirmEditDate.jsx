@@ -73,6 +73,7 @@ const ConfirmEditDate = ({ stayId, night, checkin, amenities }) => {
               setDate(dateRange);
             }}
             numberOfMonths={2}
+            disabled={{ before: new Date() }}
           />
         </div>
 
