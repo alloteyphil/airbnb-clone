@@ -16,10 +16,10 @@ const page = async () => {
         <div className="flex items-center">
           <h1 className="text-black/90 text-4xl font-medium">Trips</h1>
         </div>
-        <div className="grid grid-cols-3 max-h-[350px] overflow-hidden rounded-xl border border-neutral-200">
+        <div className="grid grid-cols-3 max-h-max overflow-hidden rounded-xl border border-neutral-200">
           <LatestTrip />
           <Image
-            className="object-cover object-bottom col-span-2"
+            className="object-cover h-full object-bottom col-span-2"
             src={TripImage}
             alt="Family gathering"
           />

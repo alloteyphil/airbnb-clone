@@ -12,14 +12,10 @@ const PastBookings = async () => {
 
   bookings = pastBookings;
 
-  if (bookings.length === 0) {
-    return <></>;
-  }
-
   return (
     <div className="flex flex-col gap-6">
       <p className="font-medium text-2xl">Where you've been</p>
-      {bookings ? (
+      {bookings && bookings.length > 0 ? (
         bookings.map((booking) => (
           <TripsCard
             key={booking._id}
@@ -29,7 +25,7 @@ const PastBookings = async () => {
           />
         ))
       ) : (
-        <></>
+        <p>You have no previous trips</p>
       )}
     </div>
   );
