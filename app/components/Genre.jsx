@@ -8,7 +8,7 @@ const Genre = async () => {
 
   return (
     <>
-      <div className="container max-h-[74px]">
+      <div className="container">
         <div className="py-3 flex gap-12 mx-auto justify-center">
           {genres.map((genre, i) => (
             <Suspense key={i} fallback={<LoadingGenre />}>

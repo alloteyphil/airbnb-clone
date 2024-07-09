@@ -15,10 +15,10 @@ const GenreBadge = ({ name, icon }) => {
         const newGenre = name;
         setGenre(newGenre);
       }}
-      className={`flex flex-col items-center cursor-pointer gap-2 relative ${
+      className={`flex flex-col items-center cursor-pointer gap-2 relative after:h-0.5 after:w-full after:absolute after:-bottom-1 after:opacity-0  ${
         active
-          ? "opacity-100 border-b-2 border-black/90"
-          : "opacity-70 hover:border-b-2 hover:border-neutral-300 hover:opacity-100 "
+          ? "opacity-100 after:bg-black/90 after:opacity-100"
+          : "opacity-70 hover:after:opacity-100 hover:border-neutral-300 hover:opacity-100 hover:after:bg-neutral-300"
       }`}
     >
       <Image src={icon} alt={name} className="w-6" width={20} height={20} />
