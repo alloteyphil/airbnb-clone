@@ -18,8 +18,11 @@ const page = async ({ params, searchParams }) => {
       (1000 * 60 * 60 * 24) || 1;
 
   const price = stay.price;
+
   const totalPrice = price * nights;
+
   const serviceFee = totalPrice * 0.07;
+
   const totalServicePrice = totalPrice + serviceFee;
 
   return (

@@ -4,9 +4,12 @@ import { useGuestStore } from "@/store/store";
 import { useState } from "react";
 
 const Children = () => {
-  const childrenContext = useGuestStore((state) => state);
-  const childrenContextChange = childrenContext.setChildren;
-  const [children, setChildren] = useState(childrenContext.children);
+  const { adults, children, setChildren, setGuestAdded } = useGuestStore(
+    (state) => state
+  );
+  const [child, setChild] = useState(children);
+
+  const maxGuests = 4;
 
   return (
     <div className="flex justify-between">
@@ -16,26 +19,25 @@ const Children = () => {
       </div>
       <div className="flex gap-4 items-center">
         <button
-          disabled={children <= 0 ? true : false}
+          disabled={child <= 0}
           onClick={() => {
-            const value = children - 1;
+            const value = child - 1;
+            setChild(value);
             setChildren(value);
-            childrenContextChange(value);
-            childrenContext.setGuestAdded(true);
+            setGuestAdded(true);
           }}
-          className={
-            "border border-neutral-400 relative p-4 rounded-full after:w-3 after:absolute after:bg-neutral-400 after:h-0.5 after:t-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 disabled:opacity-30 disabled:cursor-not-allowed"
-          }
+          className="border border-neutral-400 relative p-4 rounded-full after:w-3 after:absolute after:bg-neutral-400 after:h-0.5 after:t-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 disabled:opacity-30 disabled:cursor-not-allowed"
         ></button>
-        <p className="tabular-nums">{children}</p>
+        <p className="tabular-nums">{child}</p>
         <button
+          disabled={adults + child >= maxGuests}
           onClick={() => {
-            const value = children + 1;
+            const value = child + 1;
+            setChild(value);
             setChildren(value);
-            childrenContextChange(value);
-            childrenContext.setGuestAdded(true);
+            setGuestAdded(true);
           }}
-          className="border border-neutral-400 relative p-4 rounded-full"
+          className="border border-neutral-400 relative p-4 rounded-full disabled:opacity-30 disabled:cursor-not-allowed"
         >
           <p className="w-3 absolute text-accentDark text-xl t-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             +

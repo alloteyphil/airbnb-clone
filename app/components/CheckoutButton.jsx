@@ -31,7 +31,6 @@ const CheckoutButton = ({
       endDate,
     };
   }
-  console.log(user.id);
 
   const onCheckout = async () => {
     if (booking === undefined) return;
