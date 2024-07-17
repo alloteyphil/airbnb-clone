@@ -113,7 +113,7 @@ const page = async ({ params, searchParams }) => {
             <CheckoutButton
               stayId={stay._id}
               title={stay.title}
-              price={price}
+              price={totalServicePrice}
               image={stay.images[0]}
               nights={nights}
               startDate={searchParams.checkin}
