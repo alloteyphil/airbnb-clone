@@ -5,6 +5,7 @@ import { Globe } from "lucide-react";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import AuthProfile from "./AuthProfile";
 import NavBarSeparator from "./NavBarSeparator";
+import MobileNavbar from "./MobileNavbar";
 
 function Navbar({ children }) {
   return (
@@ -21,28 +22,33 @@ function Navbar({ children }) {
             <div className="ml-auto flex items-center max-w-max">
               <Link
                 href={"#"}
-                className="hover:rounded-full hover:bg-neutral-50 transition-colors  duration-100 p-3 text-black/90 font-normal"
+                className="hover:rounded-full hover:bg-neutral-50 transition-colors duration-100 p-3 text-black/90 font-normal hidden md:block"
               >
                 Airbnb your home
               </Link>
 
               <Link
                 href={"#"}
-                className="hover:rounded-full hover:bg-neutral-50 transition-colors  duration-100 p-3 text-black/90 font-base mx-1"
+                className="hover:rounded-full hover:bg-neutral-50 transition-colors duration-100 p-3 text-black/90 font-base mx-1 hidden md:block"
               >
                 <Globe className="w-5 h-5 font-light" />
               </Link>
 
               <SignedIn>
-                <UserButton afterSignOutUrl="/" />
+                <div className="hidden md:block">
+                  <UserButton afterSignOutUrl="/" />
+                </div>
               </SignedIn>
 
-              <AuthProfile />
+              <div className="hidden md:block">
+                <AuthProfile />
+              </div>
             </div>
           </div>
         </div>
       </nav>
       <NavBarSeparator />
+      <MobileNavbar />
     </>
   );
 }

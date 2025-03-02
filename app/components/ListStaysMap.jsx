@@ -61,11 +61,11 @@ const ListStaysMap = ({ stays }) => {
 
   return (
     <div
-      className={`w-[41%] z-10 ${
-        isInViewport ? "absolute bottom-0" : "fixed"
-      } right-0 ml-auto`}
+      className={`w-full md:w-[41%] z-10 ${
+        isInViewport ? "absolute bottom-0" : "hidden md:block fixed"
+      } md:right-0 md:ml-auto mt-8 md:mt-0`}
       ref={mapRef}
-      style={{ height: "calc(100vh - 170px)" }}
+      style={{ height: "300px", minHeight: "300px", maxHeight: "calc(100vh - 170px)" }}
     >
       <Map
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}

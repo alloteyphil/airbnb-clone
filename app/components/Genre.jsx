@@ -9,7 +9,7 @@ const Genre = async () => {
   return (
     <>
       <div className="container">
-        <div className="py-3 flex gap-12 mx-auto justify-center">
+        <div className="py-3 flex gap-3 md:gap-6 lg:gap-12 mx-auto overflow-x-auto px-4 md:px-6 justify-start md:justify-center">
           {genres.map((genre, i) => (
             <Suspense key={i} fallback={<LoadingGenre />}>
               <GenreBadge

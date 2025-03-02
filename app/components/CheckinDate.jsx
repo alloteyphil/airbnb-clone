@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format } from "date-fns";
 
 import {
@@ -39,13 +39,25 @@ const CheckinDate = () => {
         : endDate,
   });
 
+  const [monthsToShow, setMonthsToShow] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMonthsToShow(window.innerWidth >= 768 ? 2 : 1);
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <Popover>
       <PopoverTrigger
-        className="peer/guests peer-hover/destination:after:hidden after:w-[0.5px] after:absolute after:bg-neutral-400 after:left-0 after:h-[60%] after:top-1/2 after:-translate-y-1/2 relative hover:after:hidden"
+        className="peer/guests peer-hover/destination:after:hidden after:w-[0.5px] after:absolute after:bg-neutral-400 after:left-0 after:h-[60%] after:top-1/2 after:-translate-y-1/2 relative hover:after:hidden w-full md:w-auto"
         onClick={() => setDateAdded(true)}
       >
-        <div className="flex flex-col gap-1 min-w-[16.5vw] cursor-pointer rounded-full h-full p-3 hover:bg-neutral-200 focus:bg-white items-start relative">
+        <div className="flex flex-col gap-1 w-full md:min-w-[16.5vw] cursor-pointer rounded-full h-full p-3 hover:bg-neutral-200 focus:bg-white items-start relative">
           {date?.from && dateAdded ? (
             date.to ? (
               <div className="font-normal flex flex-col items-start gap-1 ml-5 text-xs">
@@ -73,8 +85,8 @@ const CheckinDate = () => {
           )}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="min-w-max mt-2 rounded-3xl shadow-md">
-        <div className="p-6 ">
+      <PopoverContent className="w-[90vw] md:min-w-max mt-2 rounded-3xl shadow-md">
+        <div className="p-4 md:p-6">
           <Calendar
             initialFocus
             mode="range"
@@ -85,7 +97,7 @@ const CheckinDate = () => {
               setStartDate(dateRange?.from);
               setEndDate(dateRange?.to);
             }}
-            numberOfMonths={2}
+            numberOfMonths={monthsToShow}
             disabled={{ before: new Date() }}
           />
         </div>

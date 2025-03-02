@@ -20,14 +20,14 @@ const Guests = () => {
       <PopoverTrigger
         className={`${
           pathname === "/" || pathname.split("/")[1] === "find-stays"
-            ? "flex-1 peer-hover/guests:after:hidden after:w-[0.5px] after:absolute after:bg-neutral-400 after:-left-0 after:h-[60%] after:top-1/2 after:-translate-y-1/2 relative hover:after:hidden"
+            ? "flex-1 peer-hover/guests:after:hidden after:w-[0.5px] after:absolute after:bg-neutral-400 after:-left-0 after:h-[60%] after:top-1/2 after:-translate-y-1/2 relative hover:after:hidden w-full md:w-auto"
             : ""
         }`}
       >
         <div
-          className={`flex flex-col gap-1 cursor-pointer p-3 ${
+          className={`flex flex-col gap-1 cursor-pointer p-3 w-full ${
             pathname === "/" || pathname.split("/")[1] === "find-stays"
-              ? "rounded-full h-full  hover:bg-neutral-200 focus:bg-white"
+              ? "rounded-full h-full hover:bg-neutral-200 focus:bg-white"
               : "hover:border hover:border-black/90 hover:rounded-b-xl"
           } items-start relative`}
         >
@@ -49,9 +49,9 @@ const Guests = () => {
           </p>
         </div>
       </PopoverTrigger>
-      <PopoverContent className="min-w-[450px] mt-2 rounded-3xl shadow-md">
-        <div className="p-6 ">
-          <div className="flex flex-col gap-6">
+      <PopoverContent className="w-[90vw] md:w-[450px] mt-2 rounded-3xl shadow-md">
+        <div className="p-4 md:p-6">
+          <div className="flex flex-col gap-4 md:gap-6">
             <Adults />
             <Children />
           </div>

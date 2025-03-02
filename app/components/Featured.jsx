@@ -7,8 +7,8 @@ const Featured = async () => {
   const featured = await getFeatured();
 
   return (
-    <div className="mt-6 pb-24">
-      <div className="mx-auto max-w-[1700px] justify-center flex flex-wrap gap-x-7 gap-y-14">
+    <div className="mt-6 pb-24 px-4 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1700px] justify-center flex flex-wrap gap-x-4 sm:gap-x-5 md:gap-x-6 lg:gap-x-7 gap-y-8 md:gap-y-10 lg:gap-y-14">
         {featured.map(
           ({
             title,

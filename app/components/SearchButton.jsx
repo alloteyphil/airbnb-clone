@@ -36,12 +36,13 @@ const SearchButton = () => {
   };
 
   return (
-    <div className="absolute right-2 top-1/2 -translate-y-1/2">
+    <div className="relative md:absolute md:right-2 md:top-1/2 md:-translate-y-1/2 w-full md:w-auto mt-4 md:mt-0">
       <button
         onClick={handleSubmit}
-        className="rounded-full p-6 bg-theme hover:bg-darkTheme transition-colors ease-in-out duration-300 max-w-max relative"
+        className="rounded-full p-4 md:p-6 bg-theme hover:bg-darkTheme transition-colors ease-in-out duration-300 w-full md:max-w-max relative flex items-center justify-center"
       >
-        <Search className="text-white w-4 rounded-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <Search className="hidden md:block text-white w-4 rounded-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <span className="text-white text-sm md:hidden">Search</span>
       </button>
     </div>
   );

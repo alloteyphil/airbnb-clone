@@ -66,7 +66,7 @@ const MapStayCard = ({
   const dates = formatDate();
 
   return (
-    <div className="w-72 flex flex-col overflow-hidden rounded-xl relative">
+    <div className="w-full sm:w-72 flex flex-col overflow-hidden rounded-xl relative">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

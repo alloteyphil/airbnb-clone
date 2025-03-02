@@ -50,8 +50,8 @@ const ConfirmEditDate = ({ stayId, night, checkin, amenities }) => {
       <DialogTrigger>
         <p className="underline text-lg font-normal">Edit</p>
       </DialogTrigger>
-      <DialogContent className="min-w-max p-0 shadow-md">
-        <div className="px-8 py-16">
+      <DialogContent className="w-[95vw] sm:w-auto sm:min-w-max p-0 shadow-md">
+        <div className="px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
           <div className="flex flex-col gap-1 mb-8">
             {date?.from !== undefined ? (
               <h2 className="text-2xl font-medium">
@@ -72,7 +72,7 @@ const ConfirmEditDate = ({ stayId, night, checkin, amenities }) => {
             onSelect={(dateRange) => {
               setDate(dateRange);
             }}
-            numberOfMonths={2}
+            numberOfMonths={window.innerWidth < 768 ? 1 : 2}
             disabled={{ before: new Date() }}
           />
         </div>

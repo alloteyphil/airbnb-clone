@@ -28,17 +28,17 @@ const page = async ({ params, searchParams }) => {
   return (
     <div className="flex flex-col min-h-screen">
       <CheckoutNavbar />
-      <div className="max-w-6xl mx-auto py-16 flex-1">
-        <div className="flex items-center">
+      <div className="max-w-6xl mx-auto py-8 md:py-12 lg:py-16 px-4 sm:px-6 md:px-8 flex-1">
+        <div className="flex items-center mb-4 md:mb-6">
           <ChevronLeftLink />
-          <h1 className="text-black/90 text-3xl font-medium">
+          <h1 className="text-black/90 text-xl sm:text-2xl md:text-3xl font-medium">
             Confirm and pay
           </h1>
         </div>
-        <div className="grid grid-cols-2 gap-20 pt-10">
-          <div className="flex flex-col gap-8 pl-12">
-            <div className="border rounded-2xl px-4 py-6 flex items-start pr-10 justify-between">
-              <div className="flex flex-col gap-2 max-w-sm text-base">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 pt-6 md:pt-10">
+          <div className="flex flex-col gap-6 md:gap-8 px-2 sm:px-4 md:pl-6 lg:pl-12 order-2 md:order-1">
+            <div className="border rounded-2xl px-4 py-6 flex items-start pr-4 sm:pr-6 md:pr-10 justify-between">
+              <div className="flex flex-col gap-2 max-w-[70%] sm:max-w-sm text-sm sm:text-base">
                 <p className="font-medium text-base">Good price</p>
                 <p>
                   Your dates are less than the avg. nightly rate over the last 3
@@ -120,16 +120,16 @@ const page = async ({ params, searchParams }) => {
               endDate={searchParams.checkout}
             />
           </div>
-          <div>
-            <div className="rounded-2xl w-full max-h-max border border-neutral-200 p-8">
+          <div className="order-1 md:order-2 mb-8 md:mb-0">
+            <div className="rounded-2xl w-full max-h-max border border-neutral-200 p-4 sm:p-6 md:p-8">
               <div className="flex flex-col gap-8">
-                <div className="flex gap-4">
+                <div className="flex gap-3 sm:gap-4">
                   <Image
                     src={`/${stay.images[0]}`}
                     alt={stay.title}
                     width={150}
                     height={200}
-                    className="rounded-2xl h-28 w-28 object-cover object-center"
+                    className="rounded-2xl h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-cover object-center"
                   />
                   <div className="flex flex-col gap-2">
                     <p className="font-medium text-lg">{stay.title}</p>
@@ -211,8 +211,8 @@ const page = async ({ params, searchParams }) => {
       <Separator isFooter={true} />
       <div className="w-full bg-footer mt-auto">
         <div className="max-w-[1500px] mx-auto">
-          <div className="flex justify-between items-center text-sm font-light py-8">
-            <div className="flex gap-2">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-sm font-light py-6 md:py-8 px-4 md:px-0 gap-6 md:gap-0">
+            <div className="flex flex-wrap gap-2">
               <p>© {new Date().getFullYear()} Airbnb, Inc.</p>
               <Link href={"#"}>
                 · <span className="hover:underline">Terms</span>
@@ -259,7 +259,7 @@ const page = async ({ params, searchParams }) => {
                 </svg>
               </div>
             </div>
-            <div className="flex gap-2 ">
+            <div className="flex flex-wrap gap-2">
               <Link href={"#"}>
                 <Globe className="w-5 h-5 font-light" />
               </Link>

@@ -20,9 +20,9 @@ const page = async ({ params }) => {
   return (
     <>
       <StickyNavBar />
-      <div className="pl-6 relative w-full flex">
+      <div className="px-4 sm:px-6 md:pl-6 relative w-full flex flex-col md:flex-row">
         <div
-          className="flex flex-col mt-5 gap-5 pb-24"
+          className="flex flex-col mt-5 gap-5 pb-12 md:pb-24 w-full md:w-auto"
           style={{ minHeight: "calc(100vh - 170px)" }}
         >
           {stays ? (
@@ -30,7 +30,7 @@ const page = async ({ params }) => {
           ) : (
             <Skeleton className="w-[100px] h-[20px] rounded-full" />
           )}
-          <div className="grid grid-cols-3 gap-x-5 gap-y-10 stay-list">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 sm:gap-x-5 gap-y-8 sm:gap-y-10 stay-list">
             {stays.map(
               ({
                 title,

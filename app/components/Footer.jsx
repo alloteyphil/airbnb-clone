@@ -5,12 +5,12 @@ import { Globe } from "lucide-react";
 
 const Footer = ({ children, isDestinationPage }) => {
   return (
-    <footer className="w-full bg-footer flex flex-col items-center pt-10 text-black/90/80 gsap-footer">
+    <footer className="w-full bg-footer flex flex-col items-center pt-10 text-black/90/80 gsap-footer px-4 md:px-6">
       <div className="max-w-[1500px] mx-auto w-full flex justify-start">
         {children}
       </div>
       <Separator isFooter={true} isDestinationPage={isDestinationPage} />
-      <div className="grid grid-cols-4 w-full pt-10 mx-auto max-w-[1500px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full pt-10 mx-auto max-w-[1500px]">
         {footerlinks.map((link) => (
           <div className="flex flex-col gap-3" key={link.title}>
             <h1 className="font-medium">{link.title}</h1>
@@ -30,8 +30,8 @@ const Footer = ({ children, isDestinationPage }) => {
       </div>
       <div className="mt-7 w-full mx-auto max-w-[1500px]">
         <Separator isFooter={true} />
-        <div className="flex justify-between items-center text-sm font-light py-5">
-          <div className="flex gap-2">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-sm font-light py-5 gap-4 md:gap-0">
+          <div className="flex flex-wrap gap-2">
             <p>© {new Date().getFullYear()} Airbnb, Inc.</p>
             <Link href={"#"}>
               · <span className="hover:underline">Terms</span>
@@ -78,7 +78,7 @@ const Footer = ({ children, isDestinationPage }) => {
               </svg>
             </div>
           </div>
-          <div className="flex gap-2 ">
+          <div className="flex flex-wrap gap-2">
             <Link href={"#"}>
               <Globe className="w-5 h-5 font-light" />
             </Link>
@@ -89,7 +89,7 @@ const Footer = ({ children, isDestinationPage }) => {
               <span className="font-medium pl-3">$</span>
               <span className="hover:underline font-medium"> USD</span>
             </Link>
-            <div className="pl-6 flex gap-4">
+            <div className="pl-0 md:pl-6 flex gap-4 mt-2 md:mt-0">
               <Link href={"#"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
