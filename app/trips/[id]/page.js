@@ -1,6 +1,6 @@
 import { getBookingById } from "@/lib/actions/getBookings.actions";
 import { getSingleStay } from "@/lib/actions/getSingularStay.action";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import SingleStayFooter from "@/app/components/SingleStayFooter";

@@ -5,7 +5,7 @@ import {
   getUpcomingBookings,
 } from "@/lib/actions/getBookings.actions";
 import TripsCard from "./TripsCard";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const AllBookings = async () => {

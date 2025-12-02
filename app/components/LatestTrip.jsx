@@ -4,7 +4,7 @@ import {
   getUpcomingBookings,
 } from "@/lib/actions/getBookings.actions";
 import { getSingleStay } from "@/lib/actions/getSingularStay.action";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import ImageCarousel from "./ImageCarousel";
 import { format, isSameMonth } from "date-fns";
