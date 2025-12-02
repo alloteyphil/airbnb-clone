@@ -1,7 +1,6 @@
 import { getDestinationStays } from "@/lib/actions/getDestionationStays.action";
 import { Skeleton } from "@/components/ui/skeleton";
 import StayCard from "@/app/components/StayCard";
-import ListStaysMap from "@/app/components/ListStaysMap";
 import StickyNavBar from "@/app/components/StickyNavBar";
 import Footer from "@/app/components/Footer";
 
@@ -21,13 +20,15 @@ const page = async ({ params }) => {
   return (
     <>
       <StickyNavBar />
-      <div className="px-4 sm:px-6 md:pl-6 relative w-full flex flex-col lg:flex-row">
+      <div className="px-4 sm:px-6 md:pl-6 relative w-full">
         <div
-          className="flex flex-col mt-4 sm:mt-5 gap-4 sm:gap-5 pb-12 md:pb-24 w-full lg:w-auto"
+          className="flex flex-col mt-4 sm:mt-5 gap-4 sm:gap-5 pb-12 md:pb-24 w-full"
           style={{ minHeight: "calc(100vh - 170px)" }}
         >
           {stays ? (
-            <h3 className="font-normal text-sm sm:text-base">Over {stays.length}+ stays</h3>
+            <h3 className="font-normal text-sm sm:text-base">
+              Over {stays.length}+ stays
+            </h3>
           ) : (
             <Skeleton className="w-[100px] h-[20px] rounded-full" />
           )}
@@ -60,7 +61,6 @@ const page = async ({ params }) => {
               )}
           </div>
         </div>
-        <ListStaysMap stays={stays} />
       </div>
       <Footer isDestinationPage={isDestinationPage} />
     </>

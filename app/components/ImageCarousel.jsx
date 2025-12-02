@@ -12,13 +12,7 @@ import Link from "next/link";
 import { useGuestStore } from "@/store/store";
 import { useSearchParams } from "next/navigation";
 
-const ImageCarousel = ({
-  images,
-  title,
-  isMapCard = false,
-  isTripCard = false,
-  id,
-}) => {
+const ImageCarousel = ({ images, title, isTripCard = false, id }) => {
   const { adults, children } = useGuestStore((state) => state);
 
   const searchParams = useSearchParams();
@@ -45,9 +39,7 @@ const ImageCarousel = ({
                     alt={`${title} ${index + 1}`}
                     width={200}
                     height={200}
-                    className={`w-full ${
-                      isMapCard ? "h-56" : "h-72"
-                    } group-hover:scale-110 transition-transform duration-300 ease-in-out object-cover object-center`}
+                    className="w-full h-72 group-hover:scale-110 transition-transform duration-300 ease-in-out object-cover object-center"
                   />
                 </Link>
               ) : (
