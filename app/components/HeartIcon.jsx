@@ -3,39 +3,55 @@
 import { getCurrentUser } from "@/lib/actions/auth.actions";
 import { toggleFavourites } from "@/lib/actions/toggleFavourites.action";
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const HeartIcon = ({ id }) => {
   const { user } = useUser();
   const router = useRouter();
+  const pathname = usePathname();
 
   const [favourited, setFavourited] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
       try {
+        // Check if user exists and has an id
+        if (!user || !user.id) {
+          return;
+        }
         const currentUser = await getCurrentUser(user.id);
-        if (currentUser.favourites.includes(id)) {
+        if (
+          currentUser &&
+          currentUser.favourites &&
+          currentUser.favourites.includes(id)
+        ) {
           setFavourited(true);
         }
       } catch (error) {
-        throw new Error(error);
+        // Silently handle errors - user might not be signed in or data might not exist
+        console.error("Error fetching user favourites:", error);
       }
     };
-    // Only fetch user data if user.id is defined
-    if (user !== null) {
-      getUser();
-    }
+    getUser();
   }, [user, id]); // Run effect whenever user changes
 
   const triggerToggleFavourites = async () => {
-    if (user) {
-      setFavourited(!favourited);
-      await toggleFavourites(user.id, id, favourited);
+    // Check if user exists and has an id
+    if (!user || !user.id) {
+      // Redirect to sign-in with the current page as the return URL
+      const returnUrl = encodeURIComponent(pathname);
+      router.push(`/sign-in?redirect_url=${returnUrl}`);
       return;
     }
-    router.push("/sign-in");
+    try {
+      setFavourited(!favourited);
+      await toggleFavourites(user.id, id, favourited);
+    } catch (error) {
+      // Revert the state if the toggle fails
+      setFavourited(favourited);
+      console.error("Error toggling favourites:", error);
+    }
   };
 
   return (

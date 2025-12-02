@@ -1,5 +1,13 @@
+"use client";
+
 import { SignUp } from "@clerk/nextjs";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  return <SignUp />;
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirect_url") || "/";
+
+  return (
+    <SignUp fallbackRedirectUrl={redirectUrl} forceRedirectUrl={redirectUrl} />
+  );
 }

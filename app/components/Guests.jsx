@@ -49,8 +49,14 @@ const Guests = () => {
           </p>
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-[90vw] md:w-[450px] mt-2 rounded-3xl shadow-md">
-        <div className="p-4 md:p-6">
+      <PopoverContent
+        className="w-[calc(100vw-1rem)] sm:w-[calc(100vw-2rem)] max-w-[450px] md:w-[450px] mt-2 rounded-3xl shadow-md p-0"
+        align="start"
+        sideOffset={8}
+        side="bottom"
+        avoidCollisions={true}
+      >
+        <div className="p-3 sm:p-4 md:p-6">
           <div className="flex flex-col gap-4 md:gap-6">
             <Adults />
             <Children />

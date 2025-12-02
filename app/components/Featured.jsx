@@ -6,9 +6,23 @@ import LoadingStayCard from "./LoadingStayCard";
 const Featured = async () => {
   const featured = await getFeatured();
 
+  if (!featured || !Array.isArray(featured) || featured.length === 0) {
+    return (
+      <div className="mt-6 pb-24 px-4 md:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1700px] text-center py-12">
+          <p className="text-gray-500 text-lg">No featured stays available.</p>
+          <p className="text-gray-400 text-sm mt-2">
+            Make sure your MongoDB connection is configured in <code className="bg-gray-100 px-2 py-1 rounded">.env.local</code> and visit{" "}
+            <a href="/api/seed" className="text-blue-500 underline">/api/seed</a> to populate the database with sample data.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-6 pb-24 px-4 md:px-6 lg:px-8">
-      <div className="mx-auto max-w-[1700px] justify-center flex flex-wrap gap-x-4 sm:gap-x-5 md:gap-x-6 lg:gap-x-7 gap-y-8 md:gap-y-10 lg:gap-y-14">
+    <div className="mt-4 sm:mt-6 pb-12 sm:pb-16 md:pb-24 px-4 sm:px-6 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1700px] justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-7">
         {featured.map(
           ({
             title,

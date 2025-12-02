@@ -45,13 +45,13 @@ const LatestTrip = async () => {
       className={`flex flex-col ${
         currentBooking.length > 0 || upcomingBooking.length > 0
           ? "gap-3"
-          : "gap-8"
-      } px-8 py-12`}
+          : "gap-6 sm:gap-8"
+      } px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12`}
     >
       {currentBooking.length > 0 ? (
         <>
-          <div className="flex justify-between items-center">
-            <h3 className="font-medium text-2xl">Your trip is confirmed</h3>
+          <div className="flex justify-between items-center gap-2">
+            <h3 className="font-medium text-lg sm:text-xl md:text-2xl">Your trip is confirmed</h3>
             <svg
               viewBox="0 0 48 48"
               xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ const LatestTrip = async () => {
               </g>
             </svg>
           </div>
-          <p className="mb-4">Reservation in {stay.location.split(",")[0]}!</p>
+          <p className="mb-3 sm:mb-4 text-sm sm:text-base">Reservation in {stay.location.split(",")[0]}!</p>
           <ImageCarousel
             images={stay.images}
             isTripCard={true}
@@ -77,10 +77,10 @@ const LatestTrip = async () => {
             index={0}
           />
           <div className="flex flex-col gap-1 grow">
-            <p className="text-lg">{stay.title}</p>
+            <p className="text-base sm:text-lg">{stay.title}</p>
             <div className="flex gap-2 items-center">
-              <p className="text-xs">Hosted by {stay.host}</p>
-              <Avatar className="w-8 h-8 mt-auto">
+              <p className="text-xs sm:text-sm">Hosted by {stay.host}</p>
+              <Avatar className="w-6 h-6 sm:w-8 sm:h-8 mt-auto">
                 <AvatarImage src={`/${stay.hostImage}`} />
                 <AvatarFallback className="capitalize">
                   {stay.host.split(" ")[0][0]}
@@ -88,7 +88,7 @@ const LatestTrip = async () => {
                 </AvatarFallback>
               </Avatar>
             </div>
-            <p className="text-neutral-600 text-xs">
+            <p className="text-neutral-600 text-xs sm:text-sm">
               {formatDate(
                 currentBooking.at(-1).startDate,
                 currentBooking.at(-1).endDate
@@ -97,22 +97,22 @@ const LatestTrip = async () => {
           </div>
           <Separator />
           <Link href={`/trips/${currentBooking.at(-1)._id}`}>
-            <button className="bg-theme w-full mt-4 transition duration-300 ease-in-out px-6 py-4 font-normal text-white text-base cursor-pointer rounded-xl hover:bg-primary">
+            <button className="bg-theme w-full mt-3 sm:mt-4 transition duration-300 ease-in-out px-4 sm:px-6 py-3 sm:py-4 font-normal text-white text-sm sm:text-base cursor-pointer rounded-xl hover:bg-primary">
               View full itinerary
             </button>
           </Link>
         </>
       ) : upcomingBooking.length > 0 ? (
         <>
-          <div className="flex justify-between items-center">
-            <h3 className="font-medium text-2xl">Upcoming trip is confirmed</h3>
+          <div className="flex justify-between items-center gap-2">
+            <h3 className="font-medium text-lg sm:text-xl md:text-2xl">Upcoming trip is confirmed</h3>
             <svg
               viewBox="0 0 48 48"
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               role="presentation"
               focusable="false"
-              className="block h-12 w-12 fill-current text-[rgb(227,28,95)] stroke-current"
+              className="block h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 fill-current text-[rgb(227,28,95)] stroke-current flex-shrink-0"
             >
               <g stroke="none">
                 <path
@@ -123,7 +123,7 @@ const LatestTrip = async () => {
               </g>
             </svg>
           </div>
-          <p className="mb-4">You're going to {stay.location.split(",")[0]}!</p>
+          <p className="mb-3 sm:mb-4 text-sm sm:text-base">You're going to {stay.location.split(",")[0]}!</p>
           <ImageCarousel
             images={stay.images}
             isTripCard={true}
@@ -131,10 +131,10 @@ const LatestTrip = async () => {
             index={0}
           />
           <div className="flex flex-col gap-1 grow">
-            <p className="text-lg">{stay.title}</p>
+            <p className="text-base sm:text-lg">{stay.title}</p>
             <div className="flex gap-2 items-center">
-              <p className="text-xs">Hosted by {stay.host}</p>
-              <Avatar className="w-8 h-8 mt-auto">
+              <p className="text-xs sm:text-sm">Hosted by {stay.host}</p>
+              <Avatar className="w-6 h-6 sm:w-8 sm:h-8 mt-auto">
                 <AvatarImage src={`/${stay.hostImage}`} />
                 <AvatarFallback className="capitalize">
                   {stay.host.split(" ")[0][0]}
@@ -142,7 +142,7 @@ const LatestTrip = async () => {
                 </AvatarFallback>
               </Avatar>
             </div>
-            <p className="text-neutral-600 text-xs">
+            <p className="text-neutral-600 text-xs sm:text-sm">
               {formatDate(
                 upcomingBooking.at(-1).startDate,
                 upcomingBooking.at(-1).endDate
@@ -151,7 +151,7 @@ const LatestTrip = async () => {
           </div>
           <Separator />
           <Link href={`/trips/${upcomingBooking.at(-1)._id}`}>
-            <button className="bg-theme w-full mt-4 transition duration-300 ease-in-out px-6 py-4 font-normal text-white text-base cursor-pointer rounded-xl hover:bg-primary">
+            <button className="bg-theme w-full mt-3 sm:mt-4 transition duration-300 ease-in-out px-4 sm:px-6 py-3 sm:py-4 font-normal text-white text-sm sm:text-base cursor-pointer rounded-xl hover:bg-primary">
               View full itinerary
             </button>
           </Link>
@@ -164,7 +164,7 @@ const LatestTrip = async () => {
             aria-hidden="true"
             role="presentation"
             focusable="false"
-            className="block h-16 w-16 fill-current text-[rgb(227,28,95)] stroke-current"
+            className="block h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 fill-current text-[rgb(227,28,95)] stroke-current"
           >
             <g stroke="none">
               <path
@@ -175,13 +175,13 @@ const LatestTrip = async () => {
             </g>
           </svg>
           <div className="flex flex-col gap-2">
-            <p className="font-medium text-xl">No trips booked ... yet!</p>
-            <p className="text-sm text-neutral-500">
+            <p className="font-medium text-lg sm:text-xl">No trips booked ... yet!</p>
+            <p className="text-xs sm:text-sm text-neutral-500">
               Time to dust off your bags and start planning your next adventure.
             </p>
           </div>
           <Link href={"/"}>
-            <button className="bg-theme transition duration-300 ease-in-out px-6 py-4 font-normal text-white text-base cursor-pointer rounded-xl hover:bg-primary">
+            <button className="bg-theme transition duration-300 ease-in-out px-4 sm:px-6 py-3 sm:py-4 font-normal text-white text-sm sm:text-base cursor-pointer rounded-xl hover:bg-primary">
               Start searching
             </button>
           </Link>

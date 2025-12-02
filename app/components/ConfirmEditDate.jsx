@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogTrigger,
   DialogClose,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Calendar } from "@/components/ui/calendar";
 import { useRouter } from "next/navigation";
@@ -18,6 +19,7 @@ const ConfirmEditDate = ({ stayId, night, checkin, amenities }) => {
     to: addDays(new Date(checkin), night),
   });
   const [nights, setNights] = useState(night);
+  const [monthsToShow, setMonthsToShow] = useState(2);
 
   useEffect(() => {
     setNights(
@@ -25,6 +27,19 @@ const ConfirmEditDate = ({ stayId, night, checkin, amenities }) => {
         (1000 * 60 * 60 * 24) || 1
     );
   }, [date]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMonthsToShow(window.innerWidth >= 768 ? 2 : 1);
+    };
+
+    // Set initial value
+    if (typeof window !== "undefined") {
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
 
   const router = useRouter();
 
@@ -54,11 +69,13 @@ const ConfirmEditDate = ({ stayId, night, checkin, amenities }) => {
         <div className="px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
           <div className="flex flex-col gap-1 mb-8">
             {date?.from !== undefined ? (
-              <h2 className="text-2xl font-medium">
+              <DialogTitle className="text-2xl font-medium">
                 {nights} night{(nights < 1 || nights > 1) && "s"}
-              </h2>
+              </DialogTitle>
             ) : (
-              <h2 className="text-2xl font-medium">Select a date</h2>
+              <DialogTitle className="text-2xl font-medium">
+                Select a date
+              </DialogTitle>
             )}
             <p className="text-neutral-400 text-xs">
               {amenities.split(", ").join(" · ")}
@@ -72,7 +89,7 @@ const ConfirmEditDate = ({ stayId, night, checkin, amenities }) => {
             onSelect={(dateRange) => {
               setDate(dateRange);
             }}
-            numberOfMonths={window.innerWidth < 768 ? 1 : 2}
+            numberOfMonths={monthsToShow}
             disabled={{ before: new Date() }}
           />
         </div>

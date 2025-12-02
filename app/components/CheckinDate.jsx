@@ -85,7 +85,13 @@ const CheckinDate = () => {
           )}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-[90vw] md:min-w-max mt-2 rounded-3xl shadow-md">
+      <PopoverContent
+        className="w-[calc(100vw-1rem)] sm:w-[calc(100vw-2rem)] max-w-[600px] md:w-auto md:min-w-max mt-2 rounded-3xl shadow-md p-0"
+        align="start"
+        sideOffset={8}
+        side="bottom"
+        avoidCollisions={true}
+      >
         <div className="p-4 md:p-6">
           <Calendar
             initialFocus

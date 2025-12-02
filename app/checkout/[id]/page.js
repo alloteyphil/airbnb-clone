@@ -10,11 +10,67 @@ import Image from "next/image";
 import Link from "next/link";
 
 const page = async ({ params, searchParams }) => {
-  const stay = await getSingleStay(params.id);
+  const { id } = await params;
+  const resolvedSearchParams = await searchParams;
+  const stay = await getSingleStay(id);
+
+  if (!stay) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <CheckoutNavbar />
+        <div className="max-w-6xl mx-auto py-8 md:py-12 lg:py-16 px-4 sm:px-6 md:px-8 flex-1">
+          <div className="flex items-center mb-4 md:mb-6">
+            <ChevronLeftLink />
+            <h1 className="text-black/90 text-xl sm:text-2xl md:text-3xl font-medium">
+              Confirm and pay
+            </h1>
+          </div>
+          <div className="flex flex-col items-center justify-center py-12">
+            <h3 className="text-2xl sm:text-3xl font-medium mb-3">
+              Stay not found
+            </h3>
+            <p className="text-neutral-500 text-center">
+              The stay you're looking for doesn't exist or has been removed.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Check if required searchParams exist
+  const checkin = resolvedSearchParams?.checkin;
+  const checkout = resolvedSearchParams?.checkout;
+  const adults = resolvedSearchParams?.adults || "1";
+  const children = resolvedSearchParams?.children || "0";
+
+  if (!checkin || !checkout) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <CheckoutNavbar />
+        <div className="max-w-6xl mx-auto py-8 md:py-12 lg:py-16 px-4 sm:px-6 md:px-8 flex-1">
+          <div className="flex items-center mb-4 md:mb-6">
+            <ChevronLeftLink />
+            <h1 className="text-black/90 text-xl sm:text-2xl md:text-3xl font-medium">
+              Confirm and pay
+            </h1>
+          </div>
+          <div className="flex flex-col items-center justify-center py-12">
+            <h3 className="text-2xl sm:text-3xl font-medium mb-3">
+              Missing booking information
+            </h3>
+            <p className="text-neutral-500 text-center">
+              Please select check-in and check-out dates to proceed with your booking.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const nights =
-    (new Date(searchParams.checkout).setHours(0, 0, 0, 0) -
-      new Date(searchParams.checkin).setHours(0, 0, 0, 0)) /
+    (new Date(checkout).setHours(0, 0, 0, 0) -
+      new Date(checkin).setHours(0, 0, 0, 0)) /
       (1000 * 60 * 60 * 24) || 1;
 
   const price = stay.price;
@@ -68,73 +124,68 @@ const page = async ({ params, searchParams }) => {
                 </g>
               </svg>
             </div>
-            <h3 className="text-xl font-medium">Your trip</h3>
-            <div className="flex justify-between">
+            <h3 className="text-lg sm:text-xl font-medium">Your trip</h3>
+            <div className="flex flex-col sm:flex-row sm:justify-between gap-3 sm:gap-0">
               <div className="flex flex-col gap-1">
-                <p className="font-normal text-lg">Dates</p>
-                <p>
-                  {searchParams.checkin.split("/")[1] ===
-                  searchParams.checkout.split("/")[1]
-                    ? `${searchParams.checkin.split("/")[0]} - ${
-                        searchParams.checkout.split("/")[0]
-                      } ${searchParams.checkout.split("/")[1]}`
-                    : `${searchParams.checkin.split("/")[0]} ${
-                        searchParams.checkin.split("/")[1]
-                      } - ${searchParams.checkout.split("/")[0]} ${
-                        searchParams.checkout.split("/")[1]
+                <p className="font-normal text-base sm:text-lg">Dates</p>
+                <p className="text-sm sm:text-base">
+                  {checkin.split("/")[1] === checkout.split("/")[1]
+                    ? `${checkin.split("/")[0]} - ${
+                        checkout.split("/")[0]
+                      } ${checkout.split("/")[1]}`
+                    : `${checkin.split("/")[0]} ${
+                        checkin.split("/")[1]
+                      } - ${checkout.split("/")[0]} ${
+                        checkout.split("/")[1]
                       }`}
                 </p>
               </div>
               <ConfirmEditDate
                 night={nights}
-                checkin={searchParams.checkin}
+                checkin={checkin}
                 amenities={stay.amenities}
                 stayId={stay._id}
               />
             </div>
-            <div className="flex justify-between">
+            <div className="flex flex-col sm:flex-row sm:justify-between gap-3 sm:gap-0">
               <div className="flex flex-col gap-1">
-                <p className="font-normal text-lg">Guests</p>
-                <p>
-                  {parseInt(searchParams.adults) +
-                    parseInt(searchParams.children)}{" "}
-                  guest
-                  {parseInt(searchParams.adults) +
-                    parseInt(searchParams.children) ===
-                  1
-                    ? ""
-                    : "s"}
+                <p className="font-normal text-base sm:text-lg">Guests</p>
+                <p className="text-sm sm:text-base">
+                  {parseInt(adults) + parseInt(children)} guest
+                  {parseInt(adults) + parseInt(children) === 1 ? "" : "s"}
                 </p>
               </div>
               <ConfirmEditGuest />
             </div>
             <Separator />
-            <h3 className="text-xl font-medium">Pay by card</h3>
+            <h3 className="text-lg sm:text-xl font-medium">Pay by card</h3>
             <CheckoutButton
               stayId={stay._id}
               title={stay.title}
               price={totalServicePrice}
               image={stay.images[0]}
               nights={nights}
-              startDate={searchParams.checkin}
-              endDate={searchParams.checkout}
+              startDate={checkin}
+              endDate={checkout}
             />
           </div>
-          <div className="order-1 md:order-2 mb-8 md:mb-0">
+          <div className="order-1 md:order-2 mb-6 sm:mb-8 md:mb-0">
             <div className="rounded-2xl w-full max-h-max border border-neutral-200 p-4 sm:p-6 md:p-8">
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-6 sm:gap-8">
                 <div className="flex gap-3 sm:gap-4">
                   <Image
                     src={`/${stay.images[0]}`}
                     alt={stay.title}
                     width={150}
                     height={200}
-                    className="rounded-2xl h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-cover object-center"
+                    className="rounded-2xl h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-cover object-center flex-shrink-0"
                   />
-                  <div className="flex flex-col gap-2">
-                    <p className="font-medium text-lg">{stay.title}</p>
-                    <p className="text-base">{stay.subtitle}</p>
-                    <div className="flex items-center gap-1 text-base">
+                  <div className="flex flex-col gap-1 sm:gap-2">
+                    <p className="font-medium text-base sm:text-lg">
+                      {stay.title}
+                    </p>
+                    <p className="text-sm sm:text-base">{stay.subtitle}</p>
+                    <div className="flex items-center gap-1 text-sm sm:text-base">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -169,8 +220,10 @@ const page = async ({ params, searchParams }) => {
                   </div>
                 </div>
                 <Separator />
-                <h3 className="text-xl font-medium">Price details</h3>
-                <div className="flex flex-col gap-4 font-light text-base">
+                <h3 className="text-lg sm:text-xl font-medium">
+                  Price details
+                </h3>
+                <div className="flex flex-col gap-3 sm:gap-4 font-light text-sm sm:text-base">
                   <div className="flex justify-between">
                     <p className="">
                       ${stay.price.toFixed(2)} x {nights} night
@@ -195,8 +248,8 @@ const page = async ({ params, searchParams }) => {
                 </div>
                 <Separator />
                 <div className="flex justify-between">
-                  <p className="font-medium text-lg">Total(USD)</p>
-                  <p className="font-medium text-lg">
+                  <p className="font-medium text-base sm:text-lg">Total(USD)</p>
+                  <p className="font-medium text-base sm:text-lg">
                     $
                     {new Intl.NumberFormat("en-US", {
                       minimumFractionDigits: 2,

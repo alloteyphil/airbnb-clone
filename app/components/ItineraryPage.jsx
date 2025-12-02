@@ -1,37 +1,22 @@
 /* eslint-disable react/no-unescaped-entities */
-import { getSingleStay } from "@/lib/actions/getSingularStay.action";
-import { CalendarClockIcon, DoorOpenIcon, ShareIcon } from "lucide-react";
-import HeartIcon from "@/app/components/HeartIcon";
+import { format, isSameMonth } from "date-fns";
 import Image from "next/image";
+import Link from "next/link";
+import {
+  CalendarClockIcon,
+  DoorOpenIcon,
+  ShareIcon,
+  ChevronLeft,
+} from "lucide-react";
+import HeartIcon from "@/app/components/HeartIcon";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { deliverables } from "@/data/deliverables";
 import { amenities } from "@/data/amenities";
-import Booking from "@/app/components/Booking";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import SingleStayFooter from "@/app/components/SingleStayFooter";
 
-const page = async ({ params }) => {
-  const { id } = await params;
-  const stay = await getSingleStay(id);
-
-  if (!stay) {
-    return (
-      <>
-        <Navbar />
-        <div className="max-w-7xl pt-6 mx-auto flex flex-col gap-3">
-          <h3 className="text-3xl font-medium">Stay not found</h3>
-          <p className="text-neutral-500">
-            The stay you're looking for doesn't exist or has been removed.
-          </p>
-        </div>
-        <Footer>
-          <SingleStayFooter location="" subtitle="" />
-        </Footer>
-      </>
-    );
-  }
-
+const ItineraryPage = ({ booking, stay }) => {
   const {
     _id,
     title,
@@ -45,10 +30,76 @@ const page = async ({ params }) => {
     description,
   } = stay;
 
+  const formatDate = (dateString) => {
+    try {
+      const date = new Date(dateString);
+      return format(date, "LLL dd, y");
+    } catch (error) {
+      return dateString;
+    }
+  };
+
+  const formatDateRange = (startDate, endDate) => {
+    try {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      const formattedStart = format(start, "MMM d");
+      const formattedEnd = format(end, isSameMonth(start, end) ? "d" : "MMM d");
+      return `${formattedStart} - ${formattedEnd}`;
+    } catch (error) {
+      return `${startDate} - ${endDate}`;
+    }
+  };
+
   return (
     <>
       <Navbar />
       <div className="max-w-7xl pt-4 sm:pt-6 mx-auto flex flex-col gap-3 px-4 sm:px-6">
+        <Link
+          href="/trips"
+          className="flex items-center gap-2 text-sm sm:text-base hover:underline mb-2"
+        >
+          <ChevronLeft className="w-4 h-4" />
+          <span>Back to trips</span>
+        </Link>
+
+        <div className="flex flex-col gap-4 sm:gap-6 mb-4 sm:mb-6">
+          <div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-2">
+              Your trip
+            </h1>
+            <p className="text-sm sm:text-base text-neutral-600">
+              {formatDateRange(
+                booking.startDateConverted,
+                booking.endDateConverted
+              )}
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 sm:p-6 bg-neutral-50 rounded-xl">
+            <div className="flex flex-col gap-1">
+              <p className="text-xs sm:text-sm text-neutral-500">Check-in</p>
+              <p className="text-sm sm:text-base font-medium">
+                {formatDate(booking.startDateConverted)}
+              </p>
+            </div>
+            <div className="hidden sm:block w-px h-8 bg-neutral-300"></div>
+            <div className="flex flex-col gap-1">
+              <p className="text-xs sm:text-sm text-neutral-500">Check-out</p>
+              <p className="text-sm sm:text-base font-medium">
+                {formatDate(booking.endDateConverted)}
+              </p>
+            </div>
+            <div className="hidden sm:block w-px h-8 bg-neutral-300"></div>
+            <div className="flex flex-col gap-1">
+              <p className="text-xs sm:text-sm text-neutral-500">Total</p>
+              <p className="text-sm sm:text-base font-medium">
+                ${booking.totalPrice.toFixed(2)}
+              </p>
+            </div>
+          </div>
+        </div>
+
         <h3 className="text-xl sm:text-2xl md:text-3xl font-medium">{title}</h3>
         <div className="flex flex-col sm:flex-row sm:justify-between gap-3 sm:gap-0">
           <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
@@ -67,7 +118,7 @@ const page = async ({ params }) => {
               </svg>
               <p className="text-sm sm:text-base">{ratings}</p>
             </div>
-            <p className="flex items-center text-lg hidden sm:flex">·</p>
+            <p className="hidden sm:flex items-center text-lg">·</p>
             <p className="underline text-sm sm:text-base">{location}</p>
           </div>
           <div className="flex gap-3 sm:gap-4">
@@ -113,7 +164,9 @@ const page = async ({ params }) => {
               <h2 className="text-xl sm:text-2xl font-medium">
                 {subtitle} in {location}
               </h2>
-              <p className="text-sm sm:text-base">2 guests · 1 bedroom · 1 bed · 1 bath</p>
+              <p className="text-sm sm:text-base">
+                2 guests · 1 bedroom · 1 bed · 1 bath
+              </p>
               <div className="flex items-center gap-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -135,12 +188,14 @@ const page = async ({ params }) => {
                 <AvatarImage src={`/${hostImage}`} />
                 <AvatarFallback className="capitalize">
                   {host.split(" ")[0][0]}
-                  {host.split(" ")[1][0]}
+                  {host.split(" ")[1]?.[0] || ""}
                 </AvatarFallback>
               </Avatar>
 
               <div className="flex flex-col gap-1">
-                <p className="font-normal text-sm sm:text-base">Hosted by {host.split(" ")[0]}</p>
+                <p className="font-normal text-sm sm:text-base">
+                  Hosted by {host.split(" ")[0]}
+                </p>
                 <p className="text-xs sm:text-sm text-neutral-500">
                   Superhost · 5 years hosting
                 </p>
@@ -151,12 +206,22 @@ const page = async ({ params }) => {
               {deliverables.map((deliverable, i) => (
                 <div key={i} className="flex items-start gap-3">
                   {i === 0 ? (
-                    <DoorOpenIcon strokeWidth={1} size={28} className="sm:w-8 sm:h-8 flex-shrink-0" />
+                    <DoorOpenIcon
+                      strokeWidth={1}
+                      size={28}
+                      className="sm:w-8 sm:h-8 shrink-0"
+                    />
                   ) : (
-                    <CalendarClockIcon strokeWidth={1} size={28} className="sm:w-8 sm:h-8 flex-shrink-0" />
+                    <CalendarClockIcon
+                      strokeWidth={1}
+                      size={28}
+                      className="sm:w-8 sm:h-8 shrink-0"
+                    />
                   )}
                   <div>
-                    <p className="font-normal text-sm sm:text-base">{deliverable.title}</p>
+                    <p className="font-normal text-sm sm:text-base">
+                      {deliverable.title}
+                    </p>
                     <p className="text-xs sm:text-sm text-neutral-500">
                       {deliverable.subtitle}
                     </p>
@@ -170,7 +235,9 @@ const page = async ({ params }) => {
             </div>
 
             <div className="flex flex-col pb-8 pt-2 gap-6 border-b-[0.5px] border-neutral-300">
-              <h2 className="font-normal text-xl sm:text-2xl">What this place offers</h2>
+              <h2 className="font-normal text-xl sm:text-2xl">
+                What this place offers
+              </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full sm:w-2/3">
                 {amenities.map((amenity, i) => (
                   <div key={i} className="flex items-center gap-5">
@@ -188,7 +255,35 @@ const page = async ({ params }) => {
           </div>
 
           <div className="w-full lg:w-1/3 pt-2 lg:pl-10 flex flex-col gap-6 sm:gap-8">
-            <Booking price={price} id={_id} />
+            <div className="border rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col gap-4 sm:gap-6 sticky top-6">
+              <h3 className="text-lg sm:text-xl font-medium">
+                Booking details
+              </h3>
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-between">
+                  <p className="text-sm sm:text-base text-neutral-600">
+                    Nights
+                  </p>
+                  <p className="text-sm sm:text-base font-medium">
+                    {booking.nights}
+                  </p>
+                </div>
+                <div className="flex justify-between">
+                  <p className="text-sm sm:text-base text-neutral-600">
+                    Price per night
+                  </p>
+                  <p className="text-sm sm:text-base font-medium">
+                    ${price.toFixed(2)}
+                  </p>
+                </div>
+                <div className="border-t pt-4 flex justify-between">
+                  <p className="text-base sm:text-lg font-medium">Total</p>
+                  <p className="text-base sm:text-lg font-medium">
+                    ${booking.totalPrice.toFixed(2)}
+                  </p>
+                </div>
+              </div>
+            </div>
             <div className="border rounded-2xl px-3 sm:px-4 py-3 sm:py-4 md:py-6 gap-2 sm:gap-3 md:gap-4 flex items-center">
               <svg
                 viewBox="0 0 48 48"
@@ -196,7 +291,7 @@ const page = async ({ params }) => {
                 aria-hidden="true"
                 role="presentation"
                 focusable="false"
-                className="h-6 w-6 sm:h-7 sm:w-7 md:h-[32px] md:w-[32px] fill-[#E31C3D] stroke-[#E31C3D] flex-shrink-0"
+                className="h-6 w-6 sm:h-7 sm:w-7 md:h-[32px] md:w-[32px] fill-[#E31C3D] stroke-[#E31C3D] shrink-0"
               >
                 <g stroke="none">
                   <path
@@ -207,7 +302,9 @@ const page = async ({ params }) => {
                 </g>
               </svg>
               <div className="flex flex-col gap-0.5 min-w-0">
-                <p className="font-normal text-sm sm:text-base">This is a rare find</p>
+                <p className="font-normal text-sm sm:text-base">
+                  This is a rare find
+                </p>
                 <p className="text-neutral-500 text-xs sm:text-sm">
                   {host}'s place is usually fully booked.
                 </p>
@@ -223,4 +320,4 @@ const page = async ({ params }) => {
   );
 };
 
-export default page;
+export default ItineraryPage;

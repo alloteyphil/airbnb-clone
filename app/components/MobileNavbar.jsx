@@ -107,12 +107,12 @@ function MobileNavbar() {
             </SignedIn>
             <SignedOut>
               <div className="flex flex-col gap-2">
-                <button
+                <div
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md w-full"
                 >
                   <AuthProfile />
-                </button>
+                </div>
               </div>
             </SignedOut>
           </div>

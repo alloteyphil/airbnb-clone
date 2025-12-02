@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
 @layer base {
   :root {
@@ -139,9 +138,17 @@
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
 }
 
+/* React Day Picker Calendar Header Row - Debug/Test */
+/* Try these selectors to see which one works. Check browser DevTools to see the actual class names */
+tr[class*="head_row"],
+.rdp-head_row,
+[class*="rdp-head_row"] {
+  background-color: red !important;
+}
+
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
   body {
     @apply bg-background text-foreground;

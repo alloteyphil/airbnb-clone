@@ -61,9 +61,9 @@ const ListStaysMap = ({ stays }) => {
 
   return (
     <div
-      className={`w-full md:w-[41%] z-10 ${
-        isInViewport ? "absolute bottom-0" : "hidden md:block fixed"
-      } md:right-0 md:ml-auto mt-8 md:mt-0`}
+      className={`w-full lg:w-[41%] z-10 ${
+        isInViewport ? "absolute bottom-0" : "hidden lg:block fixed"
+      } lg:right-0 lg:ml-auto mt-6 sm:mt-8 lg:mt-0`}
       ref={mapRef}
       style={{ height: "300px", minHeight: "300px", maxHeight: "calc(100vh - 170px)" }}
     >

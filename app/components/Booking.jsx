@@ -15,10 +15,10 @@ const Booking = ({ price, id }) => {
       (1000 * 60 * 60 * 24) || 1;
 
   return (
-    <div className="flex flex-col gap-6 rounded-2xl shadow-xl min-h-[300px] w-full p-6 border">
-      <p className="font-normal text-2xl">
+    <div className="flex flex-col gap-4 sm:gap-6 rounded-2xl shadow-xl min-h-[300px] w-full p-4 sm:p-6 border">
+      <p className="font-normal text-xl sm:text-2xl">
         ${price}
-        <span className="text-base font-light"> /night</span>
+        <span className="text-sm sm:text-base font-light"> /night</span>
       </p>
       <div className="flex flex-col w-full border border-neutral-300 rounded-xl">
         <BookingDate />

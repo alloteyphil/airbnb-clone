@@ -35,16 +35,16 @@ const AllBookings = async () => {
   });
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4 sm:gap-6">
       <Tabs defaultValue={"past"}>
-        <TabsList>
-          <TabsTrigger value={"past"}>Where you've been</TabsTrigger>
-          <TabsTrigger value={"upcoming"}>Upcoming trips</TabsTrigger>
+        <TabsList className="w-full sm:w-auto">
+          <TabsTrigger value={"past"} className="text-xs sm:text-sm">Where you've been</TabsTrigger>
+          <TabsTrigger value={"upcoming"} className="text-xs sm:text-sm">Upcoming trips</TabsTrigger>
         </TabsList>
 
         <TabsContent
           value={"past"}
-          className="grid grid-cols-3 max-h-[215px] mb-6 overflow-y-scroll gap-y-7 pt-6 min-h-max w-full show-scrollbar"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-h-[400px] sm:max-h-[215px] mb-6 overflow-y-scroll gap-y-4 sm:gap-y-7 pt-4 sm:pt-6 min-h-max w-full show-scrollbar"
         >
           {pastBookings && pastBookings.length > 0 ? (
             pastBookings.map((booking) => (
@@ -62,7 +62,7 @@ const AllBookings = async () => {
         </TabsContent>
         <TabsContent
           value={"upcoming"}
-          className="grid grid-cols-3 max-h-[215px] mb-6 overflow-y-scroll gap-y-7 pt-6 min-h-max w-full show-scrollbar"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-h-[400px] sm:max-h-[215px] mb-6 overflow-y-scroll gap-y-4 sm:gap-y-7 pt-4 sm:pt-6 min-h-max w-full show-scrollbar"
         >
           {upcomingBookings && upcomingBookings.length > 0 ? (
             upcomingBookings.map((booking) => (

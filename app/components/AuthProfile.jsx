@@ -11,8 +11,12 @@ import {
 import { SignedOut } from "@clerk/nextjs";
 import { CircleUserRound, Menu } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const AuthProfile = () => {
+  const pathname = usePathname();
+  const returnUrl = encodeURIComponent(pathname);
+
   return (
     <SignedOut>
       <div className="flex p-3 rounded-full border z-20 border-neutral-400">
@@ -24,13 +28,13 @@ const AuthProfile = () => {
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[250px] rounded-xl">
-            <Link href={"/sign-up"}>
+            <Link href={`/sign-up?redirect_url=${returnUrl}`}>
               <DropdownMenuItem className="font-semibold">
                 Sign up
               </DropdownMenuItem>
             </Link>
 
-            <Link href={"/sign-in"}>
+            <Link href={`/sign-in?redirect_url=${returnUrl}`}>
               <DropdownMenuItem className="font-light mt-4">
                 Log in
               </DropdownMenuItem>

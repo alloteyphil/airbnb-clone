@@ -10,20 +10,20 @@ const TripsCard = async ({ stayId, id, startDate, endDate }) => {
   return (
     <>
       {stay ? (
-        <Link href={`/trips/${id}`} className="flex gap-4 items-center">
+        <Link href={`/trips/${id}`} className="flex gap-3 sm:gap-4 items-center">
           <Image
             src={`/${stay.images[0]}`}
             width={80}
             height={80}
-            className="w-20 h-20 rounded-xl object-cover object-center"
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover object-center flex-shrink-0"
             alt={stay.title}
           />
-          <div className="flex flex-col">
-            <p className="font-medium text-base">
+          <div className="flex flex-col min-w-0">
+            <p className="font-medium text-sm sm:text-base truncate">
               Trip in {stay.location.split(",")[0]}
             </p>
-            <p className="text-neutral-500">Hosted by {stay.host}</p>
-            <p className="text-neutral-500">
+            <p className="text-neutral-500 text-xs sm:text-sm">Hosted by {stay.host}</p>
+            <p className="text-neutral-500 text-xs sm:text-sm">
               {format(new Date(startDate), "LLL dd, y")} -{" "}
               {format(new Date(endDate), "LLL dd, y")}
             </p>

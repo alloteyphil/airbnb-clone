@@ -6,6 +6,10 @@ import LoadingGenre from "./LoadingGenre";
 const Genre = async () => {
   const genres = await getAllGenres();
 
+  if (!genres || !Array.isArray(genres) || genres.length === 0) {
+    return null;
+  }
+
   return (
     <>
       <div className="container">
