@@ -27,7 +27,11 @@ const AuthProfile = () => {
               <CircleUserRound className="w-7 h-7 text-neutral-500" />
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-[250px] rounded-xl">
+          <DropdownMenuContent
+            className="w-[250px] rounded-xl"
+            align="end"
+            sideOffset={8}
+          >
             <Link href={`/sign-up?redirect_url=${returnUrl}`}>
               <DropdownMenuItem className="font-semibold">
                 Sign up

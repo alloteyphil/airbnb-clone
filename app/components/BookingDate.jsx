@@ -63,8 +63,8 @@ const BookingDate = () => {
           )}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="min-w-max mt-2 rounded-3xl shadow-md">
-        <div className="p-6 ">
+      <PopoverContent className="min-w-max mt-2 rounded-3xl shadow-md max-w-[1000px]">
+        <div className="p-4 md:p-5">
           <Calendar
             initialFocus
             mode="range"
@@ -76,7 +76,14 @@ const BookingDate = () => {
               setEndDate(dateRange?.to);
             }}
             numberOfMonths={2}
-            disabled={{ before: new Date() }}
+            disabled={(date) => {
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              const dateToCheck = new Date(date);
+              dateToCheck.setHours(0, 0, 0, 0);
+              // Only disable dates BEFORE today, not today itself
+              return dateToCheck < today;
+            }}
           />
         </div>
       </PopoverContent>

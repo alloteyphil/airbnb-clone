@@ -65,8 +65,8 @@ const ConfirmEditDate = ({ stayId, night, checkin, amenities }) => {
       <DialogTrigger>
         <p className="underline text-lg font-normal">Edit</p>
       </DialogTrigger>
-      <DialogContent className="w-[95vw] sm:w-auto sm:min-w-max p-0 shadow-md">
-        <div className="px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
+      <DialogContent className="w-[95vw] sm:w-auto sm:min-w-max max-w-[1000px] p-0 shadow-md">
+        <div className="px-7 sm:px-9 md:px-12 py-8 sm:py-12 md:py-16">
           <div className="flex flex-col gap-1 mb-8">
             {date?.from !== undefined ? (
               <DialogTitle className="text-2xl font-medium">
@@ -90,7 +90,14 @@ const ConfirmEditDate = ({ stayId, night, checkin, amenities }) => {
               setDate(dateRange);
             }}
             numberOfMonths={monthsToShow}
-            disabled={{ before: new Date() }}
+            disabled={(date) => {
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              const dateToCheck = new Date(date);
+              dateToCheck.setHours(0, 0, 0, 0);
+              // Only disable dates BEFORE today, not today itself
+              return dateToCheck < today;
+            }}
           />
         </div>
 

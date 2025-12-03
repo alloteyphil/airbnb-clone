@@ -12,7 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Separator from "./Separator";
 
 const LatestTrip = async () => {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   const currentBooking = await getCurrentBookings(userId);
 
@@ -51,7 +51,9 @@ const LatestTrip = async () => {
       {currentBooking.length > 0 ? (
         <>
           <div className="flex justify-between items-center gap-2">
-            <h3 className="font-medium text-lg sm:text-xl md:text-2xl">Your trip is confirmed</h3>
+            <h3 className="font-medium text-lg sm:text-xl md:text-2xl">
+              Your trip is confirmed
+            </h3>
             <svg
               viewBox="0 0 48 48"
               xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +71,9 @@ const LatestTrip = async () => {
               </g>
             </svg>
           </div>
-          <p className="mb-3 sm:mb-4 text-sm sm:text-base">Reservation in {stay.location.split(",")[0]}!</p>
+          <p className="mb-3 sm:mb-4 text-sm sm:text-base">
+            Reservation in {stay.location.split(",")[0]}!
+          </p>
           <ImageCarousel
             images={stay.images}
             isTripCard={true}
@@ -105,7 +109,9 @@ const LatestTrip = async () => {
       ) : upcomingBooking.length > 0 ? (
         <>
           <div className="flex justify-between items-center gap-2">
-            <h3 className="font-medium text-lg sm:text-xl md:text-2xl">Upcoming trip is confirmed</h3>
+            <h3 className="font-medium text-lg sm:text-xl md:text-2xl">
+              Upcoming trip is confirmed
+            </h3>
             <svg
               viewBox="0 0 48 48"
               xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +129,9 @@ const LatestTrip = async () => {
               </g>
             </svg>
           </div>
-          <p className="mb-3 sm:mb-4 text-sm sm:text-base">You're going to {stay.location.split(",")[0]}!</p>
+          <p className="mb-3 sm:mb-4 text-sm sm:text-base">
+            You're going to {stay.location.split(",")[0]}!
+          </p>
           <ImageCarousel
             images={stay.images}
             isTripCard={true}
@@ -175,7 +183,9 @@ const LatestTrip = async () => {
             </g>
           </svg>
           <div className="flex flex-col gap-2">
-            <p className="font-medium text-lg sm:text-xl">No trips booked ... yet!</p>
+            <p className="font-medium text-lg sm:text-xl">
+              No trips booked ... yet!
+            </p>
             <p className="text-xs sm:text-sm text-neutral-500">
               Time to dust off your bags and start planning your next adventure.
             </p>

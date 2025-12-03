@@ -8,7 +8,7 @@ import ItineraryPage from "@/app/components/ItineraryPage";
 
 const page = async ({ params }) => {
   const { id } = await params;
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId) {
     return (

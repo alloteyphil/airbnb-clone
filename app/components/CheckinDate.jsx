@@ -86,13 +86,13 @@ const CheckinDate = () => {
         </div>
       </PopoverTrigger>
       <PopoverContent
-        className="w-[calc(100vw-1rem)] sm:w-[calc(100vw-2rem)] max-w-[600px] md:w-auto md:min-w-max mt-2 rounded-3xl shadow-md p-0"
+        className="w-[calc(100vw-1rem)] sm:w-[calc(100vw-2rem)] max-w-[1000px] md:w-auto md:min-w-max mt-2 rounded-3xl shadow-md p-0"
         align="start"
         sideOffset={8}
         side="bottom"
         avoidCollisions={true}
       >
-        <div className="p-4 md:p-6">
+        <div className="p-4 md:p-5">
           <Calendar
             initialFocus
             mode="range"
@@ -104,7 +104,14 @@ const CheckinDate = () => {
               setEndDate(dateRange?.to);
             }}
             numberOfMonths={monthsToShow}
-            disabled={{ before: new Date() }}
+            disabled={(date) => {
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              const dateToCheck = new Date(date);
+              dateToCheck.setHours(0, 0, 0, 0);
+              // Only disable dates BEFORE today, not today itself
+              return dateToCheck < today;
+            }}
           />
         </div>
       </PopoverContent>

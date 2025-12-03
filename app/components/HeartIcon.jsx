@@ -33,7 +33,7 @@ const HeartIcon = ({ id }) => {
         console.error("Error fetching user favourites:", error);
       }
     };
-    getUser();
+      getUser();
   }, [user, id]); // Run effect whenever user changes
 
   const triggerToggleFavourites = async () => {

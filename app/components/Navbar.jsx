@@ -10,11 +10,16 @@ import MobileNavbar from "./MobileNavbar";
 function Navbar({ children }) {
   return (
     <>
-      <nav className="px-4 sm:px-6">
+      <nav className="px-4 sm:px-6 relative z-10">
         <div className="flex py-3 sm:py-4">
           <div className="flex-1 flex items-center">
             <Link href={"/"}>
-              <Image src={logo} alt="Airbnb logo" width={100} className="w-20 sm:w-24 md:w-[100px]" />
+              <Image
+                src={logo}
+                alt="Airbnb logo"
+                width={100}
+                className="w-20 sm:w-24 md:w-[100px]"
+              />
             </Link>
           </div>
           <>{children}</>

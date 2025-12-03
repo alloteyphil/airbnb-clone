@@ -9,19 +9,28 @@ import { auth } from "@clerk/nextjs/server";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const AllBookings = async () => {
-  const { userId } = auth();
+  const { userId } = await auth();
 
-  let pastBookings;
+  if (!userId) {
+    return (
+      <div className="flex flex-col gap-4 sm:gap-6">
+        <p>Please sign in to view your bookings.</p>
+      </div>
+    );
+  }
+
+  let pastBookings = [];
   const fetchPastBookings = await getPastBookings(userId);
-  pastBookings = fetchPastBookings;
+  pastBookings = fetchPastBookings || [];
 
-  let upcomingBookings;
+  let upcomingBookings = [];
   const fetchUpcomingBookings = await getUpcomingBookings(userId);
-  upcomingBookings = fetchUpcomingBookings;
+  upcomingBookings = fetchUpcomingBookings || [];
 
-  let currentBookings;
+  let currentBookings = [];
   const fetchCurrentBookings = await getCurrentBookings(userId);
-  currentBookings = fetchCurrentBookings;
+  currentBookings = fetchCurrentBookings || [];
+
   if (currentBookings && currentBookings.length > 0) {
     upcomingBookings = upcomingBookings.concat(currentBookings);
   }
@@ -34,12 +43,25 @@ const AllBookings = async () => {
     return new Date(a.startDate) - new Date(b.startDate);
   });
 
+  const totalBookings = pastBookings.length + upcomingBookings.length;
+
   return (
     <div className="flex flex-col gap-4 sm:gap-6">
+      {totalBookings === 0 && (
+        <div className="text-center py-8">
+          <p className="text-neutral-500">
+            No bookings found. Make a reservation to see your trips here.
+          </p>
+        </div>
+      )}
       <Tabs defaultValue={"past"}>
         <TabsList className="w-full sm:w-auto">
-          <TabsTrigger value={"past"} className="text-xs sm:text-sm">Where you've been</TabsTrigger>
-          <TabsTrigger value={"upcoming"} className="text-xs sm:text-sm">Upcoming trips</TabsTrigger>
+          <TabsTrigger value={"past"} className="text-xs sm:text-sm">
+            Where you've been
+          </TabsTrigger>
+          <TabsTrigger value={"upcoming"} className="text-xs sm:text-sm">
+            Upcoming trips
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent
@@ -47,15 +69,17 @@ const AllBookings = async () => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-h-[400px] sm:max-h-[215px] mb-6 overflow-y-scroll gap-y-4 sm:gap-y-7 pt-4 sm:pt-6 min-h-max w-full show-scrollbar"
         >
           {pastBookings && pastBookings.length > 0 ? (
-            pastBookings.map((booking) => (
-              <TripsCard
-                key={booking._id}
-                id={booking._id}
-                stayId={booking.stay._id}
-                startDate={booking.startDate}
-                endDate={booking.endDate}
-              />
-            ))
+            pastBookings
+              .filter((booking) => booking?.stay?._id)
+              .map((booking) => (
+                <TripsCard
+                  key={booking._id}
+                  id={booking._id}
+                  stayId={booking.stay._id}
+                  startDate={booking.startDate}
+                  endDate={booking.endDate}
+                />
+              ))
           ) : (
             <p>You have no previous trips</p>
           )}
@@ -65,15 +89,17 @@ const AllBookings = async () => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-h-[400px] sm:max-h-[215px] mb-6 overflow-y-scroll gap-y-4 sm:gap-y-7 pt-4 sm:pt-6 min-h-max w-full show-scrollbar"
         >
           {upcomingBookings && upcomingBookings.length > 0 ? (
-            upcomingBookings.map((booking) => (
-              <TripsCard
-                key={booking._id}
-                id={booking._id}
-                stayId={booking.stay._id}
-                startDate={booking.startDate}
-                endDate={booking.endDate}
-              />
-            ))
+            upcomingBookings
+              .filter((booking) => booking?.stay?._id)
+              .map((booking) => (
+                <TripsCard
+                  key={booking._id}
+                  id={booking._id}
+                  stayId={booking.stay._id}
+                  startDate={booking.startDate}
+                  endDate={booking.endDate}
+                />
+              ))
           ) : (
             <p>You have no upcoming trip</p>
           )}

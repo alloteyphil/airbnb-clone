@@ -138,12 +138,70 @@
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
 }
 
-/* React Day Picker Calendar Header Row - Debug/Test */
-/* Try these selectors to see which one works. Check browser DevTools to see the actual class names */
-tr[class*="head_row"],
-.rdp-head_row,
-[class*="rdp-head_row"] {
-  background-color: red !important;
+/* React Day Picker Calendar Styling */
+.rdp-day_selected,
+.rdp-day_range_start,
+.rdp-day_range_end,
+[class*="rdp-day_selected"],
+[class*="rdp-day_range_start"],
+[class*="rdp-day_range_end"] {
+  background-color: rgb(0 0 0 / 0.9) !important;
+  color: white !important;
+}
+
+.rdp-day_selected:hover,
+.rdp-day_range_start:hover,
+.rdp-day_range_end:hover,
+[class*="rdp-day_selected"]:hover,
+[class*="rdp-day_range_start"]:hover,
+[class*="rdp-day_range_end"]:hover {
+  background-color: rgb(0 0 0 / 0.9) !important;
+  color: white !important;
+}
+
+.rdp-day_range_middle,
+[class*="rdp-day_range_middle"] {
+  background-color: rgb(245 245 245) !important;
+  color: rgb(0 0 0 / 0.9) !important;
+}
+
+/* Calendar Navigation Buttons */
+.rdp-button_previous,
+.rdp-button_next,
+[class*="rdp-button_previous"],
+[class*="rdp-button_next"] {
+  height: 2rem !important;
+  width: 2rem !important;
+  padding: 0 !important;
+  border-radius: 9999px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.rdp-button_previous:hover,
+.rdp-button_next:hover,
+[class*="rdp-button_previous"]:hover,
+[class*="rdp-button_next"]:hover {
+  background-color: rgb(245 245 245) !important;
+}
+
+.rdp-button_previous svg,
+.rdp-button_next svg,
+[class*="rdp-button_previous"] svg,
+[class*="rdp-button_next"] svg {
+  width: 1rem !important;
+  height: 1rem !important;
+  color: rgb(0 0 0 / 0.9) !important;
+}
+
+/* Ensure today is never grayed out */
+.rdp-day[aria-disabled="false"][data-today="true"],
+.rdp-day:not([aria-disabled="true"])[data-today="true"] {
+  opacity: 1 !important;
+  color: inherit !important;
 }
 
 @layer base {

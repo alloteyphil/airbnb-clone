@@ -17,19 +17,19 @@ const Loading = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 overflow-hidden mt-5 gap-2 rounded-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden mt-5 gap-2 rounded-2xl">
           <div className="overflow-hidden max-h-[550px]">
-            <Skeleton className="w-full h-full" />
+            <Skeleton className="w-full h-full min-h-[300px] md:min-h-[550px]" />
           </div>
           <div className="grid grid-cols-2 gap-2">
             {Array.from({ length: 4 }).map((_, i) => (
-              <Skeleton key={i} className="w-full h-[270px]" />
+              <Skeleton key={i} className="w-full h-[150px] md:h-[270px]" />
             ))}
           </div>
         </div>
 
-        <div className="flex gap-10 min-h-screen mt-7">
-          <div className="w-2/3 flex flex-col gap-6 mt-2">
+        <div className="flex flex-col md:flex-row gap-10 min-h-screen mt-7">
+          <div className="w-full md:w-2/3 flex flex-col gap-6 mt-2">
             <div className="flex flex-col gap-3">
               <Skeleton className="w-60 h-8" />
               <Skeleton className="w-40 h-6" />
@@ -60,7 +60,7 @@ const Loading = () => {
 
             <div className="flex flex-col pb-8 pt-2 gap-6 border-b-[0.5px] border-neutral-300">
               <h2 className="font-normal text-2xl">What this place offers</h2>
-              <div className="grid grid-cols-2 gap-5 w-2/3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full md:w-2/3">
                 {Array.from({ length: 4 }).map((_, i) => (
                   <div key={i} className="flex items-center gap-5">
                     <Skeleton className="w-8 h-8 rounded-full" />
@@ -71,7 +71,7 @@ const Loading = () => {
             </div>
           </div>
 
-          <div className="w-1/3 pt-2 pl-10 flex flex-col gap-8">
+          <div className="w-full md:w-1/3 pt-2 md:pl-10 flex flex-col gap-8">
             <div className="flex flex-col gap-6 rounded-2xl shadow-xl min-h-[300px] w-full p-6 border">
               <Skeleton className="w-16 h-8" />
               <div className="flex flex-col w-full px-10 py-4 border border-neutral-300 rounded-xl">
