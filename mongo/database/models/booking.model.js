@@ -27,3 +27,4 @@ const BookingSchema = new Schema({
 const Bookings = models.Bookings || model("Bookings", BookingSchema);
 
 export default Bookings;
+

@@ -51,11 +51,15 @@ const StayCard = ({ id, title, price, images, ratings, location, host }) => {
     }
     try {
       setFavourited(!favourited);
-      await toggleFavourites(user.id, id, favourited);
+      const result = await toggleFavourites(user.id, id, favourited);
+      // If toggleFavourites returns null, the user doesn't exist in database yet
+      // Revert the state change
+      if (!result) {
+        setFavourited(favourited);
+      }
     } catch (error) {
       // Revert the state if the toggle fails
       setFavourited(favourited);
-      console.error("Error toggling favourites:", error);
     }
   };
 

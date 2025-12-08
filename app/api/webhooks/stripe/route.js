@@ -9,15 +9,19 @@ export async function POST(req) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
   const body = await req.text();
-  const sig = headers().get("Stripe-Signature");
+  const sig = (await headers()).get("Stripe-Signature");
   const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET_KEY;
   let event;
 
   try {
-    if (!sig || !endpointSecret) return;
+    if (!sig || !endpointSecret) {
+      return new NextResponse("Webhook Error: Missing signature or secret", {
+        status: 400,
+      });
+    }
     event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
   } catch (err) {
-    return NextResponse.json(err);
+    return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
   const eventType = event.type;

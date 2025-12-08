@@ -20,3 +20,4 @@ const StaysSchema = new Schema({
 const Stays = models.Stays || model("Stays", StaysSchema);
 
 export default Stays;
+

@@ -6,8 +6,6 @@ let cached = global.mongoose || { conn: null, promise: null };
 
 export const connectToDb = async () => {
   if (cached.conn) {
-    console.log("Connected to database");
-
     return cached.conn;
   }
 
@@ -25,8 +23,10 @@ export const connectToDb = async () => {
   try {
     cached.conn = await cached.promise;
   } catch (error) {
-    console.log("Connection to mongodb failed. Please try again", error);
+    cached.promise = null;
+    throw error;
   }
 
   return cached.conn;
 };
+

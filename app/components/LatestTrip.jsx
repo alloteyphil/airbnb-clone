@@ -31,10 +31,12 @@ const LatestTrip = async () => {
   }
 
   const formatDate = (startDate, endDate) => {
-    const formattedStartDate = format(startDate, "MMM d");
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const formattedStartDate = format(start, "MMM d");
     const formattedEndDate = format(
-      endDate,
-      isSameMonth(startDate, endDate) ? "d" : "MMM d"
+      end,
+      isSameMonth(start, end) ? "d" : "MMM d"
     );
 
     const formattedDateRange = `${formattedStartDate} - ${formattedEndDate}`;

@@ -14,7 +14,7 @@ export default clerkMiddleware(async (auth, req) => {
   if (!isPublicRoute(req)) {
     await auth.protect({
       unauthenticatedUrl: `/sign-in?redirect_url=${encodeURIComponent(
-        req.url
+        req.url,
       )}`,
     });
   }
@@ -26,3 +26,4 @@ export const config = {
   // for more information about configuring your Middleware
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
+
